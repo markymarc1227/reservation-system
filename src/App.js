@@ -58,7 +58,8 @@ class App extends Component {
       resTime: data.resTime,
       barber: data.barber,
       status: data.status
-    }})
+      }
+    })
   }
 
   loadAdmin= (data) => {
@@ -76,7 +77,6 @@ class App extends Component {
       { 
         [name]: value
       }));
-
   }
 
   onRouteChange = (route) => {
@@ -86,14 +86,19 @@ class App extends Component {
       this.setState({isUserSignedIn: true});
     } else if (route === 'adminhome'){
       this.setState({isAdminSignedIn: true});
-    this.setState({route: route});
     }
+    this.setState({route: route});
   };
 
   render() {
-    const { route, onRouteChange, onInputChange } = this.state;
+    const { route } = this.state;
+    const { status } = this.state.user;
     return (
-      <RenderRoute route={route} onRouteChange={onRouteChange} onInputChange={onInputChange}/>
+      <RenderRoute 
+        route={route} 
+        onRouteChange={this.onRouteChange} 
+        onInputChange={this.onInputChange}
+        status={status}/>
     );
   }
 }

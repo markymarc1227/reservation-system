@@ -1,39 +1,23 @@
 import React from "react";
 import UserSignIn from "./UserSignIn/UserSignIn";
 import UserRegister from "./UserRegister/UserRegister";
+import UserHome from "./UserComponents/UserHome";
 
 
-const RenderRoute = ({route}) => {
+const RenderRoute = ({route, onInputChange, status, onRouteChange}) => {
   switch (route) {
     case 'signin':
-      return <UserSignIn/>
-      break;
+      return <UserSignIn onRouteChange={onRouteChange}/>;
     case 'register':
-      return <UserRegister/>
-      break;
+      return <UserRegister onRouteChange={onRouteChange}/>;
     case 'userhome':
-      return <div>User Home</div>;
-      break;
-    case 'pending':
-      return <div>Pending Page</div>;
-      break;
-    case 'rescheduled':
-      return <div>Rescheduled</div>;
-      break;
-    case 'checked':
-      return <div>Health Checklist</div>;
-      break;
-    case 'confirmed':
-      return <div>Details</div>;
-      break;
+      return <UserHome onInputChange={onInputChange} status={status} />;
     case 'adminsignin':
       return <div>SignIn</div>;
-      break;
     case 'adminhome':
       return <div>Admin Home</div>;
-      break;
     default:
-      return <div>Sign In</div>;
+      return <UserSignIn onRouteChange={onRouteChange}/>;
   }
 };
 
