@@ -44,7 +44,7 @@ class UserSignIn extends React.Component {
 				<main className="pa4 black-80">
 				<div className="measure">
 					<fieldset id="sign_in" className="ba b--transparent ph0 mh0">
-					<legend className="f2 tc fw6 ph0 mh0 white">LOGIN</legend>
+					<legend className="f2 tc fw8 ph0 mh0 white">LOGIN</legend>
 					<div className="mt3">
 						{/* <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label> */}
 						<input className="b pa2 pl3 black input-reset ba br4 bg-moon-gray hover-bg-white w-100" 

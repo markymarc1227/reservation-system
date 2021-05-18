@@ -1,4 +1,6 @@
 import React from "react";
+import BookingForm from "./BookingForm";
+
 
 const RenderStatus= ({route}) => {
   switch (route) {
@@ -11,7 +13,7 @@ const RenderStatus= ({route}) => {
     case 'confirmed':
       return <div>Details</div>;
     default:
-      return <div>Booking and Service Page</div>;
+      return <BookingForm/>;
   }
 };
 

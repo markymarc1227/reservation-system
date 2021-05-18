@@ -8,7 +8,7 @@ const initialState = {
   isAdminSignedIn: false,
   user: {
     id: '',
-    name: '',
+    name: 'someone',
     email: '',
     service: 'gupit supremo',
     resDate: '',
@@ -33,10 +33,10 @@ class App extends Component {
         id: '',
         name: 'someone',
         email: '',
-        service: '',
+        service: 'gupit supremo',
         resDate: '',
         resTime: '',
-        barber: '',
+        barber: 'anyone',
         status: '',
         reqId: ''
       },
