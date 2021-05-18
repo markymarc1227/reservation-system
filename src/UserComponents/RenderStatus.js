@@ -11,7 +11,7 @@ const RenderStatus= ({route}) => {
     case 'confirmed':
       return <div>Details</div>;
     default:
-      return <div>Sign In</div>;
+      return <div>Booking and Service Page</div>;
   }
 };
 

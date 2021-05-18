@@ -31,7 +31,7 @@ class App extends Component {
       isAdminSignedIn: false,
       user: {
         id: '',
-        name: '',
+        name: 'someone',
         email: '',
         service: '',
         resDate: '',
@@ -92,13 +92,15 @@ class App extends Component {
 
   render() {
     const { route } = this.state;
-    const { status } = this.state.user;
+    const { status, name } = this.state.user;
     return (
       <RenderRoute 
         route={route} 
         onRouteChange={this.onRouteChange} 
         onInputChange={this.onInputChange}
-        status={status}/>
+        status={status}
+        name={name}
+        />
     );
   }
 }

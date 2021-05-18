@@ -1,1 +1,12 @@
+@font-face {
+    font-family: 'CattleTrailJNL';
+    font-style: normal;
+    font-weight: normal;
+    src: local('CattleTrailJNL'), url('CattleTrailJNL.woff') format('woff');
+    }
+    
+h1 {
+    font-family: 'CattleTrailJNL';
+    font-weight: 200;
+}
 

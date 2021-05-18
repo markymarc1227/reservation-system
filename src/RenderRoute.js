@@ -4,14 +4,14 @@ import UserRegister from "./UserRegister/UserRegister";
 import UserHome from "./UserComponents/UserHome";
 
 
-const RenderRoute = ({route, onInputChange, status, onRouteChange}) => {
+const RenderRoute = ({route, onInputChange, status, name, onRouteChange}) => {
   switch (route) {
     case 'signin':
       return <UserSignIn onRouteChange={onRouteChange}/>;
     case 'register':
       return <UserRegister onRouteChange={onRouteChange}/>;
     case 'userhome':
-      return <UserHome onInputChange={onInputChange} status={status} />;
+      return <UserHome onInputChange={onInputChange} status={status} name={name}/>;
     case 'adminsignin':
       return <div>SignIn</div>;
     case 'adminhome':
