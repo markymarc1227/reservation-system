@@ -7,9 +7,19 @@ import UserHome from "./UserComponents/UserHome";
 const RenderRoute = ({route, onInputChange, status, name, onRouteChange}) => {
   switch (route) {
     case 'signin':
-      return <UserSignIn onRouteChange={onRouteChange}/>;
+      return (
+        <div>
+          <h1 className="f-subheadline tc mh2">SUPREMO BARBERS - STA. CRUZ</h1>
+          <UserSignIn onRouteChange={onRouteChange}/>
+        </div>
+        );
     case 'register':
-      return <UserRegister onRouteChange={onRouteChange}/>;
+      return (
+        <div>
+          <h1 className="f-subheadline tc mh2 mb3">SUPREMO BARBERS - STA. CRUZ</h1>
+          <UserRegister onRouteChange={onRouteChange}/>
+        </div>
+        );
     case 'userhome':
       return <UserHome onRouteChange={onRouteChange} onInputChange={onInputChange} 
       status={status} name={name}/>;

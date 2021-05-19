@@ -4,22 +4,26 @@ class UserRegister extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
+			firstName: '',
+			lastName: '',
+			age: '',
+			gender: 'select',
+			contactNum: '',
+			address: '',
 			email: '',
-			password: '',
-			name: ''
-		}
+			password: ''
+		};
+		this.onRegisterChange = this.onRegisterChange.bind(this);
 	}
 
-	onNameChange = (event) => {
-		this.setState({name: event.target.value})
-	}
+	onRegisterChange(event) {
+		const target = event.target;
+		const value = target.type === 'checkbox' ? target.checked : target.value;
+		const name = target.name;
 
-	onEmailChange = (event) => {
-		this.setState({email: event.target.value})
-	}
-
-	onPasswordChange = (event) => {
-		this.setState({password: event.target.value})
+		this.setState({
+			[name]: value
+		});
 	}
 
 	onSubmitSignIn = () => {
@@ -42,49 +46,106 @@ class UserRegister extends React.Component {
 	}
 
 	render() {
+		const {onRouteChange} = this.props;
 		return (
 			<div>
-			<h1 className="f-subheadline tc mh2">SUPREMO BARBERS - STA. CRUZ</h1>
-				<article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
+				<article className="br4 ba bg-white b--black-10 mt1 mb4 w-100 w-50-m w-25-l mw6 shadow-5 center">
 					<main className="pa4 black-80">
 					<div className="measure">
 						<fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-						<legend className="f1 fw6 ph0 mh0">Register</legend>
-						<div className="mt3">
-							<label className="db fw6 lh-copy f6" htmlFor="Name">Name</label>
-							<input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
+						<legend className="f2 tc fw6 ph0 mh0">REGISTER</legend>
+						<div className="mt2">
+							{/* <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label> */}
+							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
 								type="text" 
-								name="name"  
-								id="name"
-								onChange={this.onNameChange}
+								name="firstName"  
+								id="firstName"
+								onChange={this.onRegisterChange}
+								placeholder="First Name"
 							/>
 						</div>
-						<div className="mt3">
-							<label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
-							<input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
+						<div className="mt2">
+							{/* <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label> */}
+							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
+								type="text" 
+								name="lastName"  
+								id="lastName"
+								onChange={this.onRegisterChange}
+								placeholder="Last Name"
+							/>
+						</div>
+							<div className="mt2 db tc">
+								{/* <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label> */}
+								<input className="pa2 b mh2 pl3 ba br4 bg-light-gray hover-bg-white w-30" 
+									type="number" 
+									name="age"  
+									id="age"
+									min="1"
+									max="150"
+									onChange={this.onRegisterChange}
+									placeholder="Age"
+								/>
+								{/* <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label> */}
+								<select className="pa2 mh2 b pl2 pr3 ba br4 bg-light-gray hover-bg-white w-40 dib" 
+								value={this.state.gender}
+								onChange={this.onRegisterChange}>
+									<option value="male">Male</option>
+									<option value="female">Female</option>
+								</select>
+							</div>
+						<div className="mt2">
+							{/* <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label> */}
+							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
+								type="tel" 
+								name="contactNum"  
+								id="contactNum"
+								onChange={this.onRegisterChange}
+								placeholder="09XXXXXXXXX"
+								pattern="[0-9]{15}"
+							/>
+						</div>
+						<div className="mt2">
+							{/* <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label> */}
+							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
+								type="text" 
+								name="address"  
+								id="address"
+								onChange={this.onRegisterChange}
+								placeholder="Address"
+							/>
+						</div>
+						<div className="mt2">
+							{/* <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label> */}
+							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
 								type="email" 
-								name="email-address"  
-								id="email-address"
-								onChange={this.onEmailChange}
+								name="email"  
+								id="email"
+								onChange={this.onRegisterChange}
+								placeholder="Email"
 								/>
 
 						</div>
-						<div className="mv3">
-							<label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
-							<input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
+						<div className="mb2 mt2">
+							{/* <label className="db fw6 lh-copy f6" htmlFor="password">Password</label> */}
+							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
 								type="password" 
 								name="password"  
 								id="password"
-								onChange={this.onPasswordChange}
+								onChange={this.onRegisterChange}
+								placeholder="Password"
 							/>
 						</div>
 						</fieldset>
-						<div className="">
-						<input 
-						onClick={this.onSubmitSignIn} 
-						className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
-						type="submit" 
-						value="Register"/>
+						<div className="tc mv2">
+							<input 
+							// onClick={this.onSubmitSignIn} 
+							className="f6 white ph3 br4 pv2 input-reset ba b--transparent bg-black grow pointer" 
+							type="submit" 
+							value="Register"
+							/>
+						</div>
+						<div className="tc mt3 mb2">
+							<p onClick={() => onRouteChange('signin')} className="f6 b black underline link dim db pointer tc">Back to Login</p>
 						</div>
 					</div>
 					</main>
