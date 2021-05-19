@@ -1,5 +1,6 @@
 import React from "react";
 import BookingForm from "./BookingForm";
+import Services from "./Services";
 
 
 const RenderStatus= ({route}) => {
@@ -13,7 +14,12 @@ const RenderStatus= ({route}) => {
     case 'confirmed':
       return <div>Details</div>;
     default:
-      return <BookingForm/>;
+      return (
+        <div>
+          <BookingForm/>
+          <Services/>
+        </div>
+      );
   }
 };
 

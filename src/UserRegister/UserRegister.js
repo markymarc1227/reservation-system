@@ -76,7 +76,7 @@ class UserRegister extends React.Component {
 						</div>
 							<div className="mt2 db tc">
 								{/* <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label> */}
-								<input className="pa2 b mh2 pl3 ba br4 bg-light-gray hover-bg-white w-30" 
+								<input className="pa2 b mh2 mb2 pl3 ba br4 bg-light-gray hover-bg-white w-35" 
 									type="number" 
 									name="age"  
 									id="age"
@@ -86,14 +86,14 @@ class UserRegister extends React.Component {
 									placeholder="Age"
 								/>
 								{/* <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label> */}
-								<select className="pa2 mh2 b pl2 pr3 ba br4 bg-light-gray hover-bg-white w-40 dib" 
+								<select className="pa2 mh2 mb2 b pl2 pr3 ba br4 bg-light-gray hover-bg-white w-50 dib" 
 								value={this.state.gender}
 								onChange={this.onRegisterChange}>
 									<option value="male">Male</option>
 									<option value="female">Female</option>
 								</select>
 							</div>
-						<div className="mt2">
+						<div className="mt0">
 							{/* <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label> */}
 							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
 								type="tel" 
@@ -138,7 +138,7 @@ class UserRegister extends React.Component {
 						</fieldset>
 						<div className="tc mv2">
 							<input 
-							// onClick={this.onSubmitSignIn} 
+							onClick={() => onRouteChange('userhome')}
 							className="f6 white ph3 br4 pv2 input-reset ba b--transparent bg-black grow pointer" 
 							type="submit" 
 							value="Register"

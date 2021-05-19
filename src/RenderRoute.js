@@ -28,7 +28,12 @@ const RenderRoute = ({route, onInputChange, status, name, onRouteChange}) => {
     case 'adminhome':
       return <div>Admin Home</div>;
     default:
-      return <UserSignIn onRouteChange={onRouteChange}/>;
+      return (
+          <div>
+            <h1 className="f-subheadline tc mh2">SUPREMO BARBERS - STA. CRUZ</h1>
+            <UserSignIn onRouteChange={onRouteChange}/>
+          </div>
+        );
   }
 };
 
