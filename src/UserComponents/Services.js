@@ -2,46 +2,46 @@ import React from 'react';
 
 const Services = ( ) => {
     return(
-        <article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
-            <main className="pa4 black-80">
+        <article className="br4 ba bg-black b--black-10 mv4 w-100 w-50-m w-30-l mw6 shadow-5 center">
+            <main className="pa4 black-80 white">
             <div className="measure">
-                <fieldset id="sign_up" className="ba b--transparent ph0 mh0">
-                <legend className="f1 fw6 ph0 mh0">Register</legend>
-                <div className="mt3">
-                    <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label>
-                    <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
-                        type="text" 
-                        name="name"  
-                        id="name"
-                        // onChange={this.onNameChange}
-                    />
+                <div className="f3 b ph0 mh0 tc">Services Offered:</div>
+                <div className="flex justify-between f5 fw5 mv3">
+                    <p className="mv0">Gupit Supremo</p>
+                    <p className="mv0">₱200</p>
                 </div>
-                <div className="mt3">
-                    <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
-                    <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
-                        type="email" 
-                        name="email-address"  
-                        id="email-address"
-                        // onChange={this.onEmailChange}
-                        />
-
+                <div className="flex justify-between f5 fw5 mv3">
+                    <p className="mv0">Gupit Supremo w/ Banlaw</p>
+                    <p className="mv0">₱220</p>
                 </div>
-                <div className="mv3">
-                    <label className="db fw6 lh-copy f6" htmlFor="password">Password</label>
-                    <input className="b pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" 
-                        type="password" 
-                        name="password"  
-                        id="password"
-                        // onChange={this.onPasswordChange}
-                    />
+                <div className="flex justify-between f5 fw5 mv3">
+                    <p className="mv0">Ahit Supremo</p>
+                    <p className="mv0">₱150</p>
                 </div>
-                </fieldset>
-                <div className="">
-                <input 
-                // onClick={this.onSubmitSignIn} 
-                className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
-                type="submit" 
-                value="Register"/>
+                <div className="flex justify-between f5 fw5 mv3">
+                    <p className="mv0">Hair Tattoo</p>
+                    <p className="mv0">₱250</p>
+                </div>
+                <div className="flex justify-between f5 fw5 mv3">
+                    <p className="mv0">Supremo Espesyal</p>
+                    <p className="mv0">₱400</p>
+                </div>
+                <div className="flex justify-between f5 fw5 mv3">
+                    <p className="mv0">Supremo Espesyal w/ Ahit</p>
+                    <p className="mv0">₱480</p>
+                </div>
+                <div className="f4 b ph0 mh0 tc">Other Services:</div>
+                <div className="flex justify-between f5 fw5 mv3">
+                    <p className="mv0">Linis Tenga</p>
+                    <p className="mv0">₱120</p>
+                </div>
+                <div className="flex justify-between f5 fw5 mv3">
+                    <p className="mv0">Scalp Treatment</p>
+                    <p className="mv0">₱370</p>
+                </div>
+                <div className="flex justify-between f5 fw5 mv3">
+                    <p className="mv0">Perm</p>
+                    <p className="mv0">₱1200</p>
                 </div>
             </div>
             </main>

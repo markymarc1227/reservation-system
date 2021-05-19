@@ -15,7 +15,7 @@ const RenderStatus= ({route}) => {
       return <div>Details</div>;
     default:
       return (
-        <div>
+        <div className="flex flex-wrap">
           <BookingForm/>
           <Services/>
         </div>
