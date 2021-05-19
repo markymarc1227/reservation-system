@@ -39,6 +39,7 @@ class UserSignIn extends React.Component {
 		const { onRouteChange } = this.props;
 		return (
 			<div>
+				<h1 className="f-subheadline tc mh2">SUPREMO BARBERS - STA. CRUZ</h1>
 				<article className="br3 ba bg-black mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
 					<main className="pa4 black-80">
 					<div className="measure">

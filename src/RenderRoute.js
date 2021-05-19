@@ -2,43 +2,29 @@ import React from "react";
 import UserSignIn from "./UserSignIn/UserSignIn";
 import UserRegister from "./UserRegister/UserRegister";
 import UserHome from "./UserComponents/UserHome";
-
+import AdminSignIn from "./AdminSignIn/AdminSignIn";
+import AdminHome from "./AdminComponents/AdminHome";
 
 const RenderRoute = ({route, onInputChange, status, name, onRouteChange}) => {
   switch (route) {
     case 'signin':
-      return (
-        <div>
-          <h1 className="f-subheadline tc mh2">SUPREMO BARBERS - STA. CRUZ</h1>
-          <UserSignIn onRouteChange={onRouteChange}/>
-        </div>
-        );
+      return <UserSignIn onRouteChange={onRouteChange}/>;
 
     case 'register':
-      return (
-        <div>
-          <h1 className="f-subheadline tc mh2 mb3">SUPREMO BARBERS - STA. CRUZ</h1>
-          <UserRegister onRouteChange={onRouteChange}/>
-        </div>
-        );
+      return <UserRegister onRouteChange={onRouteChange}/>;
 
     case 'userhome':
       return <UserHome onRouteChange={onRouteChange} onInputChange={onInputChange} 
       status={status} name={name}/>;
 
     case 'adminsignin':
-      return <div>SignIn</div>;
+      return <AdminSignIn onRouteChange={onRouteChange}/>;
 
     case 'adminhome':
-      return <div>Admin Home</div>;
+      return <AdminHome onRouteChange={onRouteChange}/>;
       
     default:
-      return (
-          <div>
-            <h1 className="f-subheadline tc mh2">SUPREMO BARBERS - STA. CRUZ</h1>
-            <UserSignIn onRouteChange={onRouteChange}/>
-          </div>
-        );
+      return <UserSignIn onRouteChange={onRouteChange}/>;
   }
 };
 

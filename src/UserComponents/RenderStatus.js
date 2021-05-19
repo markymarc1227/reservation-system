@@ -7,7 +7,7 @@ import Rescheduled from "./Rescheduled";
 import Services from "./Services";
 
 
-const RenderStatus= ({onInputChange, status}) => {
+const RenderStatus = ({onInputChange, status}) => {
   switch (status) {
     case 'pending':
       return <Pending/>;
