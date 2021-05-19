@@ -1,6 +1,9 @@
 import React from "react";
 import BookingForm from "./BookingForm";
+import ConfirmedDetails from "./ConfirmedDetails";
+import HealthChecklist from "./HealthChecklist";
 import Pending from "./Pending";
+import Rescheduled from "./Rescheduled";
 import Services from "./Services";
 
 
@@ -9,11 +12,11 @@ const RenderStatus= ({onInputChange, status}) => {
     case 'pending':
       return <Pending/>;
     case 'rescheduled':
-      return <div>Rescheduled</div>;
+      return <Rescheduled/>;
     case 'checked':
-      return <div>Health Checklist</div>;
+      return <HealthChecklist/>;
     case 'confirmed':
-      return <div>Details</div>;
+      return <ConfirmedDetails/>;
     default:
       return (
         <div className="flex flex-wrap">
