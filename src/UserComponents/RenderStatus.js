@@ -1,12 +1,13 @@
 import React from "react";
 import BookingForm from "./BookingForm";
+import Pending from "./Pending";
 import Services from "./Services";
 
 
-const RenderStatus= ({route}) => {
-  switch (route) {
+const RenderStatus= ({onInputChange, status}) => {
+  switch (status) {
     case 'pending':
-      return <div>Pending Page</div>;
+      return <Pending/>;
     case 'rescheduled':
       return <div>Rescheduled</div>;
     case 'checked':
@@ -16,7 +17,7 @@ const RenderStatus= ({route}) => {
     default:
       return (
         <div className="flex flex-wrap">
-          <BookingForm/>
+          <BookingForm onInputChange={onInputChange}/>
           <Services/>
         </div>
       );

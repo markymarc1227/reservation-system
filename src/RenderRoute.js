@@ -13,6 +13,7 @@ const RenderRoute = ({route, onInputChange, status, name, onRouteChange}) => {
           <UserSignIn onRouteChange={onRouteChange}/>
         </div>
         );
+
     case 'register':
       return (
         <div>
@@ -20,13 +21,17 @@ const RenderRoute = ({route, onInputChange, status, name, onRouteChange}) => {
           <UserRegister onRouteChange={onRouteChange}/>
         </div>
         );
+
     case 'userhome':
       return <UserHome onRouteChange={onRouteChange} onInputChange={onInputChange} 
       status={status} name={name}/>;
+
     case 'adminsignin':
       return <div>SignIn</div>;
+
     case 'adminhome':
       return <div>Admin Home</div>;
+      
     default:
       return (
           <div>

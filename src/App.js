@@ -14,7 +14,7 @@ const initialState = {
     resDate: '',
     resTime: '',
     barber: 'anyone',
-    status: '',
+    status: 'pending',
     reqId: ''
   },
   admin: {
@@ -37,7 +37,7 @@ class App extends Component {
         resDate: '',
         resTime: '',
         barber: 'anyone',
-        status: '',
+        status: 'pending',
         reqId: ''
       },
       admin: {
