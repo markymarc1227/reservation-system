@@ -3,12 +3,13 @@ import './AdminNavigation.css';
 
 const AdminNavigation = ({ onSubrouteChange, onRouteChange }) => {
     return(
-    <nav className="flex">
-        <p onClick={() => onSubrouteChange('schedule')} className='f5 fw5 ml5 mr2 white hover-black hover-bg-moon-gray b--transparent bg-black ph3 br3 pv2 ba pointer'>Schedule</p>
-        <p onClick={() => onSubrouteChange('requests')} className='f5 fw5 mr5 push white hover-black hover-bg-moon-gray b--transparent bg-black ph3 br3 pv2 ba pointer'>Requests</p>
-        <p onClick={() => onSubrouteChange('completed')} className='f5 fw5 mr5 push white hover-black hover-bg-moon-gray b--transparent bg-black ph3 br3 pv2 ba pointer'>Completed</p>
+    <nav className="navigation">
+        <p onClick={() => onSubrouteChange('schedule')} className='f5 fw5 ml2 mr3 mv2 white hover-black hover-bg-moon-gray b--transparent bg-black ph3 br3 pv2 ba pointer tc'>Schedule</p>
+        <p onClick={() => onSubrouteChange('requests')} className='f5 fw5 ml2 mr3 mv2 white hover-black hover-bg-moon-gray b--transparent bg-black ph3 br3 pv2 ba pointer tc'>Requests</p>
+        <p onClick={() => onSubrouteChange('completed')} className='f5 fw5 ml2 mr3 mv2 white hover-black hover-bg-moon-gray b--transparent bg-black ph3 br3 pv2 ba pointer tc'>Completed</p>
 
-        <p onClick={() => onRouteChange('signout')} className='f5 fw5 mr5 push white hover-black hover-bg-moon-gray b--transparent bg-black ph3 br3 pv2 ba pointer'>Logout</p>
+
+        <p onClick={() => onRouteChange('signout')} className='f5 fw5 mv2 push white hover-black hover-bg-moon-gray b--transparent bg-black ph3 br3 pv2 ba pointer tc'>Logout</p>
     </nav>
     );
 }

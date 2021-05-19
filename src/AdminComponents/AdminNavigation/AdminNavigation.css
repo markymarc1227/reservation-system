@@ -1,3 +1,38 @@
+/* Large */
+.navigation {
+    display: flex;
+    flex-flow: row wrap;
+    /* This aligns items to the end line on main-axis */
+    justify-content: flex-start;
+    margin-left: 1.5em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+
 .push {
     margin-left: auto;
+    margin-right: 1.5em;
 }
+  /* Medium screens */
+  @media all and (max-width: 800px) {
+    .navigation {
+      /* When on medium sized screens, we center it by evenly distributing empty space around items */
+      justify-content: space-around;
+    }
+  }
+  
+  /* Small screens */
+  @media all and (max-width: 580px) {
+    .navigation {
+      /* On small screens, we are no longer using row direction but column */
+      flex-direction: column;
+      margin-left: 1.5em;
+      margin-right: 1.5em;
+    }
+
+    .push {
+        margin-left: 0.5em;
+        margin-right: 1em;
+    }
+  }

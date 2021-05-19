@@ -29,7 +29,10 @@ class HealthChecklist extends React.Component {
       }
 
     render() {
-        console.log(this.state)
+        console.log("----------------------------")
+        for (const key of Object.keys(this.state)) {    
+            console.log(key, this.state[key]);
+        }
         return(
             <div>
                 <div className="mv3 b black tc f3">Appointment Confirmed!</div>
