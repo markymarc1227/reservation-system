@@ -9,6 +9,7 @@ class UserHome extends Component {
 
   render() {
     const {name, status, onRouteChange, onInputChange} = this.props;
+  
     return (
         <div>
             <Navigation onRouteChange={onRouteChange}/>

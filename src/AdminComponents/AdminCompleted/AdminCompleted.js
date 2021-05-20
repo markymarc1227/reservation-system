@@ -13,8 +13,8 @@ class AdminCompleted extends Component {
   render() {
     return (
       <div>
-        <h1 className="f1 mt0 mb2 mh4"> Completed </h1>
-        <div className="f3 mh4 b">Date</div>
+        <h1 className="f1 mt0 mb2 mh3 tc"> Completed </h1>
+        <div className="f3 mh3 b">Date</div>
       </div>
         
     );

@@ -11,6 +11,7 @@ const BookingForm = ({onInputChange}) => {
                     <label className="db fw6 f6 tc" htmlFor="service">Service</label>
                         <select className="pa2 mh2 mt1 mb1 b pl2 pr3 ba br4 bg-light-gray hover-bg-white w-80" 
                             // value={this.state.gender}
+                            name="service"
                             onChange={onInputChange}>
                                 <option value="gupit supremo">Gupit Supremo</option>
                                 <option value="gupit supremo w/ banlaw">Gupit Supremo w/ Banlaw</option>
@@ -27,8 +28,8 @@ const BookingForm = ({onInputChange}) => {
                     <label className="db fw6 f6 tc" htmlFor="date">Date</label>
                     <input className="b pa2 mt1 mb1 ba br4 bg-light-gray hover-bg-white w-70" 
                         type="date" 
-                        name="date"  
-                        id="date"
+                        name="resDate"  
+                        id="resDate"
                         onChange={onInputChange}
                     />
                 </div>
@@ -36,8 +37,8 @@ const BookingForm = ({onInputChange}) => {
                     <label className="db fw6 f6 tc" htmlFor="time">Time</label>
                     <input className="b pa2 mt1 ba br4 bg-light-gray hover-bg-white w-70" 
                         type="time" 
-                        name="time"  
-                        id="time"
+                        name="resTime"  
+                        id="resTime"
                         onChange={onInputChange}
                     />
                 </div>
@@ -45,6 +46,7 @@ const BookingForm = ({onInputChange}) => {
                     <label className="db fw6 f6 tc" htmlFor="service">Preferred Barber</label>
                         <select className="pa2 mh2 mt1 mb1 b pl2 pr3 ba br4 bg-light-gray hover-bg-white w-80" 
                             // value={this.state.gender}
+                            name="barber"
                             onChange={onInputChange}>
                                 <option value="anyone">Anyone</option>
                                 <option value="barber1">Barber 1</option>

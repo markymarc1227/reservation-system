@@ -14,7 +14,7 @@ const initialState = {
     resDate: '',
     resTime: '',
     barber: 'anyone',
-    status: 'checked',
+    status: '',
     reqId: ''
   },
   admin: {
@@ -37,7 +37,7 @@ class App extends Component {
         resDate: '',
         resTime: '',
         barber: 'anyone',
-        status: 'checked',
+        status: '',
         reqId: ''
       },
       admin: {
@@ -93,6 +93,10 @@ class App extends Component {
   render() {
     const { route } = this.state;
     const { status, name } = this.state.user;
+    console.log("----------------------------")
+        for (const key of Object.keys(this.state.user)) {    
+            console.log(key, this.state.user[key]);
+        }
     return (
       <RenderRoute 
         route={route} 
