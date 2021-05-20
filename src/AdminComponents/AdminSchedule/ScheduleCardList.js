@@ -6,6 +6,12 @@ const ScheduleCardList = () => {
     <div>
         <HeaderCard/>
         <CustomerCard/>
+        <CustomerCard/>
+        <CustomerCard/>
+        <CustomerCard/>
+        <CustomerCard/>
+        <CustomerCard/>
+        <CustomerCard/>
     </div>
 
 
