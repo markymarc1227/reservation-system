@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ScheduleCardList from './ScheduleCardList';
 
 class AdminSchedule extends Component {
   constructor(props) {
@@ -11,9 +12,11 @@ class AdminSchedule extends Component {
 
   render() {
     return (
-        <div>
-            Schedule
-        </div>
+      <div>
+        <h1 className="f1 mt0 mb2 mh4"> Schedule </h1>
+        <div className="f3 mh4 b">Date</div>
+        <ScheduleCardList/>
+      </div>
         
     );
   }

@@ -12,10 +12,10 @@ class AdminRequests extends Component {
 
   render() {
     return (
-        <div>
-            Requests
-        </div>
-        
+      <div>
+        <h1 className="f1 mt0 mb2 mh4"> Requests </h1>
+        <div className="f3 mh4 b">Date</div>
+      </div>     
     );
   }
 }

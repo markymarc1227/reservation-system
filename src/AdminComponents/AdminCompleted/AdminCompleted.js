@@ -12,9 +12,10 @@ class AdminCompleted extends Component {
 
   render() {
     return (
-        <div>
-            completed
-        </div>
+      <div>
+        <h1 className="f1 mt0 mb2 mh4"> Completed </h1>
+        <div className="f3 mh4 b">Date</div>
+      </div>
         
     );
   }
