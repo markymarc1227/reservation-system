@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import RequestCardList from './RequestCardList';
 
 class AdminRequests extends Component {
   constructor(props) {
@@ -6,15 +7,29 @@ class AdminRequests extends Component {
     this.state = {
         accept: "",
         resDate: "",
-        resTime: ""
+        resTime: "",
+        currentDate: new Date().toDateString()
     };
   }
 
   render() {
     return (
       <div>
-        <h1 className="f1 mt0 mb2 mh3 tc"> Requests </h1>
-        <div className="f3 mh3 b">Date</div>
+        <h1 className="f1 mt0 pa0 mb2 mh3 tc underline"> Requests </h1>
+        <div className="flex flex-wrap items-center">
+            <div className="f3 ml3 mr3 b">{this.state.currentDate}</div>
+            <input className="b f6 bw1 b--black pv1 pl3 pr3 mt1 mb1 ba br4 bg-light-silver hover-bg-moon-gray" 
+                        type="date" 
+                        name="requestDate"  
+                        id="reqeustDate"
+                    />
+            <input  
+                    className="black f6 mh3 bw1 b--black pv1 pl3 pr3 input-reset ba br4 bg-light-silver grow pointer f6" 
+                    type="submit" 
+                    value="Change Date"/>
+        </div>
+        
+        <RequestCardList/>
       </div>     
     );
   }

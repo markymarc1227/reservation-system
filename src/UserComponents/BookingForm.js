@@ -30,6 +30,7 @@ const BookingForm = ({onInputChange}) => {
                         type="date" 
                         name="resDate"  
                         id="resDate"
+                        min= {new Date().toISOString().split("T")[0]}
                         onChange={onInputChange}
                     />
                 </div>
@@ -39,6 +40,8 @@ const BookingForm = ({onInputChange}) => {
                         type="time" 
                         name="resTime"  
                         id="resTime"
+                        min = "08:00"
+                        max = "20:00"
                         onChange={onInputChange}
                     />
                 </div>
