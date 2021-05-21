@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BookingForm = ({onInputChange, onSubmitBooking, barber, service}) => {
+const BookingForm = ({onBookingInputChange, onSubmitBooking, barber, service}) => {
     return(
         <article className="br4 ba bg-white b--black-10 mv4 w-100 w-50-m w-30-l mw6 shadow-5 center">
             <main className="pa4 black-80">
@@ -11,8 +11,8 @@ const BookingForm = ({onInputChange, onSubmitBooking, barber, service}) => {
                     <label className="db fw6 f6 tc" htmlFor="service">Service</label>
                         <select className="pa2 mh2 mt1 mb1 b pl2 pr3 ba br4 bg-light-gray hover-bg-white w-80" 
                             value={service}
-                            name="service"
-                            onChange={onInputChange}>
+                            onChange={onBookingInputChange}
+                            name="service">
                                 <option value="gupit supremo">Gupit Supremo</option>
                                 <option value="gupit supremo w/ banlaw">Gupit Supremo w/ Banlaw</option>
                                 <option value="ahit supremo">Ahit Supremo</option>
@@ -31,7 +31,7 @@ const BookingForm = ({onInputChange, onSubmitBooking, barber, service}) => {
                         name="resDate"  
                         id="resDate"
                         min= {new Date().toISOString().split("T")[0]}
-                        onChange={onInputChange}
+                        onChange={onBookingInputChange}
                     />
                 </div>
                 <div className="mv2 tc">
@@ -42,15 +42,15 @@ const BookingForm = ({onInputChange, onSubmitBooking, barber, service}) => {
                         id="resTime"
                         min = "08:00"
                         max = "20:00"
-                        onChange={onInputChange}
+                        onChange={onBookingInputChange}
                     />
                 </div>
                 <div className="mt3 mb0 tc">
                     <label className="db fw6 f6 tc" htmlFor="service">Preferred Barber</label>
                         <select className="pa2 mh2 mt1 mb1 b pl2 pr3 ba br4 bg-light-gray hover-bg-white w-80" 
-                            value={barber}
                             name="barber"
-                            onChange={onInputChange}>
+                            onChange={onBookingInputChange}
+                            value={barber}>
                                 <option value="anyone">Anyone</option>
                                 <option value="barber1">Barber 1</option>
                                 <option value="barber2">Barber 2</option>

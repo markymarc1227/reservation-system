@@ -49,6 +49,8 @@ class App extends Component {
       }
     };
     this.onInputChange = this.onInputChange.bind(this);
+    this.onBookingInputChange = this.onBookingInputChange.bind(this);
+    this.onSubmitBooking = this.onSubmitBooking.bind(this);
   }
 
   loadUser = (data) => {
@@ -87,6 +89,18 @@ class App extends Component {
     const name = target.name;
 
     this.setState(Object.assign(this.state.user, 
+      { 
+        [name]: value
+      })
+    );
+  }
+
+  onBookingInputChange = (event) =>{
+    const target = event.target;
+    const value = target.type === 'checkbox' ? target.checked : target.value;
+    const name = target.name;
+
+    this.setState(Object.assign(this.state.booking, 
       { 
         [name]: value
       })
@@ -143,6 +157,7 @@ class App extends Component {
         route={route} 
         onRouteChange={this.onRouteChange} 
         onInputChange={this.onInputChange}
+        onBookingInputChange={this.onBookingInputChange}
         onSubmitBooking={this.onSubmitBooking}
         loadUser={this.loadUser}
         loadBooking={this.loadBooking}
