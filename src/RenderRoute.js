@@ -5,10 +5,10 @@ import UserHome from "./UserComponents/UserHome";
 import AdminSignIn from "./AdminSignIn/AdminSignIn";
 import AdminHome from "./AdminComponents/AdminHome";
 
-const RenderRoute = ({route, onInputChange, status, name, onRouteChange, loadUser}) => {
+const RenderRoute = ({route, onInputChange, status, name, onRouteChange, loadUser, loadBooking}) => {
   switch (route) {
     case 'signin':
-      return <UserSignIn onRouteChange={onRouteChange} loadUser={loadUser}/>;
+      return <UserSignIn onRouteChange={onRouteChange} loadUser={loadUser} loadBooking={loadBooking}/>;
 
     case 'register':
       return <UserRegister onRouteChange={onRouteChange} loadUser={loadUser}/>;

@@ -52,15 +52,22 @@ class App extends Component {
   loadUser = (data) => {
     this.setState(Object.assign(this.state.user, 
       { 
-        id: data.id,
-        name: data.firstName,
-        email: data.email,
+        id: data.user_id,
+        name: data.firstname,
+        email: data.user_email,
+      })
+    );
+  }
+  
+  loadBooking = (data) => {
+    this.setState(Object.assign(this.state.booking, 
+      { 
+        reqId: data.req_id,
         service: data.service,
-        resDate: data.resDate,
+        resDate: data.resDate.split("T")[0],
         resTime: data.resTime,
         barber: data.barber,
-        status: data.status,
-        reqId: data.req_id
+        status: data.status
       })
     );
   }
@@ -84,18 +91,7 @@ class App extends Component {
     );
   }
 
-  loadBooking = (data) => {
-    this.setState(Object.assign(this.state.booking, 
-      { 
-        reqId: data.req_id,
-        service: data.service,
-        resDate: data.resDate.split("T")[0],
-        resTime: data.resTime,
-        barber: data.barber,
-        status: data.status
-      })
-    );
-  }
+  
 
   onSubmitBooking = () => {
 		fetch('http://localhost:3000/bookingrequest', {
@@ -144,6 +140,7 @@ class App extends Component {
         onRouteChange={this.onRouteChange} 
         onInputChange={this.onInputChange}
         loadUser={this.loadUser}
+        loadBooking={this.loadBooking}
         status={status}
         name={name}
         />

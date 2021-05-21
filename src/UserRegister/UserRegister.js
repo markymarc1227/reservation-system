@@ -7,7 +7,7 @@ class UserRegister extends React.Component {
 			firstName: '',
 			lastName: '',
 			age: null,
-			gender: '',
+			gender: 'male',
 			contactNum: '',
 			address: '',
 			email: '',
@@ -26,21 +26,26 @@ class UserRegister extends React.Component {
 		});
 	}
 
-	onSubmitSignIn = () => {
+	onSubmitRegister = () => {
 		fetch('http://localhost:3000/register', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
 				email: this.state.email,
 				password: this.state.password,
-				name: this.state.name
-			})
+				firstName: this.state.firstName,
+				lastName: this.state.lastName,
+				age: this.state.age,
+				gender: this.state.gender,
+				contactNum: this.state.contactNum,
+				address: this.state.address,
+				})
 		})
 			.then(response => response.json())
 			.then(user => {
-				if (user.id){
+				if (user.user_id){
 					this.props.loadUser(user)
-					this.props.onRouteChange('home');
+					this.props.onRouteChange('userhome');
 				}
 			})
 	}
@@ -84,6 +89,7 @@ class UserRegister extends React.Component {
 									placeholder="Age"
 								/>
 								<select className="pa2 mh2 mb2 b pl2 pr3 ba br4 bg-light-gray hover-bg-white w-50 dib" 
+								name="gender"
 								value={this.state.gender}
 								onChange={this.onRegisterChange}>
 									<option value="male">Male</option>
@@ -131,7 +137,7 @@ class UserRegister extends React.Component {
 						</fieldset>
 						<div className="tc mv2">
 							<input 
-							onClick={() => onRouteChange('userhome')}
+							onClick={this.onSubmitRegister}
 							className="f6 white ph3 br4 pv2 input-reset ba b--transparent bg-black grow pointer" 
 							type="submit" 
 							value="Register"
