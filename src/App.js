@@ -54,7 +54,7 @@ class App extends Component {
       { 
         id: data.user_id,
         name: data.firstname,
-        email: data.user_email,
+        email: data.user_email
       })
     );
   }
@@ -90,8 +90,6 @@ class App extends Component {
       })
     );
   }
-
-  
 
   onSubmitBooking = () => {
 		fetch('http://localhost:3000/bookingrequest', {
@@ -139,6 +137,7 @@ class App extends Component {
         route={route} 
         onRouteChange={this.onRouteChange} 
         onInputChange={this.onInputChange}
+        onSubmitBooking={this.onSubmitBooking}
         loadUser={this.loadUser}
         loadBooking={this.loadBooking}
         status={status}

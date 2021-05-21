@@ -22,16 +22,19 @@ class UserSignIn extends React.Component {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
-				email: this.state.signInEmail,
-				password: this.state.signInPassword
+				signInEmail: this.state.signInEmail,
+				signInPassword: this.state.signInPassword
 			})
 		})
 			.then(response => response.json())
 			.then(user => {
-				if (user.id){
+				if (user.req_id){
 					this.props.loadUser(user);
-					this.props.onRouteChange('home');
-				}
+					this.props.loadBooking(user);
+					this.props.onRouteChange('userhome');
+				} 
+				this.props.loadUser(user);
+				this.props.onRouteChange('userhome');
 			})
 	}
 
@@ -66,7 +69,7 @@ class UserSignIn extends React.Component {
 						</div>
 						</fieldset>
 						<div className="tc">
-						<input onClick={() => onRouteChange('userhome')}  /*onClick={this.onSubmitSignIn}*/ className="f6 b black ph3 br4 pv2 input-reset ba bg-moon-gray grow pointer" 
+						<input onClick={this.onSubmitSignIn} className="f6 b black ph3 br4 pv2 input-reset ba bg-moon-gray grow pointer" 
 							type="submit" 
 							value="Login"/>
 						</div>
