@@ -1,6 +1,6 @@
 import React from 'react';
 
-const BookingForm = ({onInputChange}) => {
+const BookingForm = ({onInputChange, onSubmitBooking, barber, service}) => {
     return(
         <article className="br4 ba bg-white b--black-10 mv4 w-100 w-50-m w-30-l mw6 shadow-5 center">
             <main className="pa4 black-80">
@@ -10,7 +10,7 @@ const BookingForm = ({onInputChange}) => {
                 <div className="mt3 mb0 tc">
                     <label className="db fw6 f6 tc" htmlFor="service">Service</label>
                         <select className="pa2 mh2 mt1 mb1 b pl2 pr3 ba br4 bg-light-gray hover-bg-white w-80" 
-                            // value={this.state.gender}
+                            value={service}
                             name="service"
                             onChange={onInputChange}>
                                 <option value="gupit supremo">Gupit Supremo</option>
@@ -48,7 +48,7 @@ const BookingForm = ({onInputChange}) => {
                 <div className="mt3 mb0 tc">
                     <label className="db fw6 f6 tc" htmlFor="service">Preferred Barber</label>
                         <select className="pa2 mh2 mt1 mb1 b pl2 pr3 ba br4 bg-light-gray hover-bg-white w-80" 
-                            // value={this.state.gender}
+                            value={barber}
                             name="barber"
                             onChange={onInputChange}>
                                 <option value="anyone">Anyone</option>
@@ -60,7 +60,7 @@ const BookingForm = ({onInputChange}) => {
                 </fieldset>
                 <div className="tc mt3 mb2">
                     <input 
-                    // onClick={this.onSubmitSignIn} 
+                    onClick={onSubmitBooking} 
                     className="white ph4 pv2 input-reset ba br4 b--black bg-black grow pointer f6 dib" 
                     type="submit" 
                     value="Book Now"/>

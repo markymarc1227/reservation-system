@@ -5,7 +5,7 @@ import UserHome from "./UserComponents/UserHome";
 import AdminSignIn from "./AdminSignIn/AdminSignIn";
 import AdminHome from "./AdminComponents/AdminHome";
 
-const RenderRoute = ({route, onInputChange, status, name, onRouteChange, loadUser, loadBooking, onSubmitBooking}) => {
+const RenderRoute = ({route, onInputChange, barber, service, status, name, onRouteChange, loadUser, loadBooking, onSubmitBooking}) => {
   switch (route) {
     case 'signin':
       return <UserSignIn onRouteChange={onRouteChange} loadUser={loadUser} loadBooking={loadBooking}/>;
@@ -15,7 +15,7 @@ const RenderRoute = ({route, onInputChange, status, name, onRouteChange, loadUse
 
     case 'userhome':
       return <UserHome onRouteChange={onRouteChange} onInputChange={onInputChange} 
-      status={status} name={name} onSubmitBooking={onSubmitBooking}/>;
+      status={status} name={name} barber={barber} service={service} onSubmitBooking={onSubmitBooking}/>;
 
     case 'adminsignin':
       return <AdminSignIn onRouteChange={onRouteChange}/>;

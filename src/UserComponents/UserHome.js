@@ -8,13 +8,13 @@ class UserHome extends Component {
 //   }
 
   render() {
-    const {name, status, onRouteChange, onInputChange} = this.props;
+    const {name, status, barber, service, onRouteChange, onInputChange, onSubmitBooking} = this.props;
   
     return (
         <div>
             <Navigation onRouteChange={onRouteChange}/>
             <h1 className="f1 ma2 tc"> {`Hi, ${name}`}!</h1>
-            <RenderStatus onInputChange={onInputChange} status={status}/>
+            <RenderStatus onInputChange={onInputChange} status={status} barber={barber} service={service} onSubmitBooking={onSubmitBooking}/>
         </div>
         
     );

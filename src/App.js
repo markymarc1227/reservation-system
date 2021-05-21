@@ -9,7 +9,9 @@ const initialState = {
   user: {
     id: '',
     name: 'someone',
-    email: '',
+    email: ''
+  },
+  booking: {
     service: 'gupit supremo',
     resDate: '',
     resTime: '',
@@ -64,8 +66,8 @@ class App extends Component {
       { 
         reqId: data.req_id,
         service: data.service,
-        resDate: data.resDate.split("T")[0],
-        resTime: data.resTime,
+        resDate: data.reqdate.split("T")[0],
+        resTime: data.reqtime,
         barber: data.barber,
         status: data.status
       })
@@ -97,18 +99,17 @@ class App extends Component {
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
 				user_id: this.state.user.id,
-        service: this.state.user.service,
-        resDate: this.state.user.resDate,
-        resTime: this.state.user.resTime,
-        barber: this.state.user.barber,
-        status: 'pending',
+        service: this.state.booking.service,
+        resDate: this.state.booking.resDate,
+        resTime: this.state.booking.resTime,
+        barber: this.state.booking.barber
 			})
 		})
 			.then(response => response.json())
 			.then(booking => {
 				if (booking.req_id){
 					this.loadBooking(booking);
-					this.onRouteChange('home');
+					this.onRouteChange('userhome');
 				}
 			})
 	}
@@ -127,10 +128,15 @@ class App extends Component {
 
   render() {
     const { route } = this.state;
-    const { status, name } = this.state.user;
-    console.log("----------------------------")
+    const { name } = this.state.user;
+    const { barber, service, status } = this.state.booking;
+    console.log("----------user-----------------")
         for (const key of Object.keys(this.state.user)) {    
             console.log(key, this.state.user[key]);
+        }
+        console.log("----------booking------------------")
+        for (const key of Object.keys(this.state.booking)) {    
+            console.log(key, this.state.booking[key]);
         }
     return (
       <RenderRoute 
@@ -140,6 +146,8 @@ class App extends Component {
         onSubmitBooking={this.onSubmitBooking}
         loadUser={this.loadUser}
         loadBooking={this.loadBooking}
+        barber={barber}
+        service={service}
         status={status}
         name={name}
         />

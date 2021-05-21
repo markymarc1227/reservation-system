@@ -29,8 +29,8 @@ class UserSignIn extends React.Component {
 			.then(response => response.json())
 			.then(user => {
 				if (user.req_id){
-					this.props.loadUser(user);
 					this.props.loadBooking(user);
+					this.props.loadUser(user);
 					this.props.onRouteChange('userhome');
 				} 
 				this.props.loadUser(user);
