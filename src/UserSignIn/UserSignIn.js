@@ -18,7 +18,7 @@ class UserSignIn extends React.Component {
 	}
 
 	onSubmitSignIn = () => {
-		fetch('https://warm-shore-00390.herokuapp.com/signin', {
+		fetch('http://localhost:3000/signin', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -46,7 +46,6 @@ class UserSignIn extends React.Component {
 						<fieldset id="sign_in" className="ba b--transparent ph0 mh0">
 						<legend className="f2 tc fw8 ph0 mh0 white">LOGIN</legend>
 						<div className="mt3">
-							{/* <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label> */}
 							<input className="b pa2 pl3 black input-reset ba br4 bg-moon-gray hover-bg-white w-100" 
 								type="email" 
 								name="email-address" 
@@ -57,7 +56,6 @@ class UserSignIn extends React.Component {
 
 						</div>
 						<div className="mv3">
-							{/* <label className="db fw6 lh-copy f6" htmlFor="password">Password</label> */}
 							<input className="b pa2 pl3 input-reset ba br4 bg-moon-gray hover-bg-white w-100" 
 								type="password" 
 								name="password"  

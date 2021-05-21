@@ -33,6 +33,8 @@ class App extends Component {
         id: '',
         name: 'someone',
         email: '',
+      },
+      booking: {
         service: 'gupit supremo',
         resDate: '',
         resTime: '',
@@ -48,22 +50,24 @@ class App extends Component {
   }
 
   loadUser = (data) => {
-    this.setState({
-    user: {
-      id: data.id,
-      name: data.firstName,
-      email: data.email,
-      service: data.service,
-      resDate: data.resDate,
-      resTime: data.resTime,
-      barber: data.barber,
-      status: data.status
-      }
-    })
+    this.setState(Object.assign(this.state.user, 
+      { 
+        id: data.id,
+        name: data.firstName,
+        email: data.email,
+        service: data.service,
+        resDate: data.resDate,
+        resTime: data.resTime,
+        barber: data.barber,
+        status: data.status,
+        reqId: data.req_id
+      })
+    );
   }
 
   loadAdmin = (data) => {
-    this.setState({admin: {
+    this.setState({
+      admin: {
       id: data.adminid,
     }})
   }
@@ -76,8 +80,45 @@ class App extends Component {
     this.setState(Object.assign(this.state.user, 
       { 
         [name]: value
-      }));
+      })
+    );
   }
+
+  loadBooking = (data) => {
+    this.setState(Object.assign(this.state.booking, 
+      { 
+        reqId: data.req_id,
+        service: data.service,
+        resDate: data.resDate.split("T")[0],
+        resTime: data.resTime,
+        barber: data.barber,
+        status: data.status
+      })
+    );
+  }
+
+  onSubmitBooking = () => {
+		fetch('http://localhost:3000/bookingrequest', {
+			method: 'post',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				user_id: this.state.user.id,
+        service: this.state.user.service,
+        resDate: this.state.user.resDate,
+        resTime: this.state.user.resTime,
+        barber: this.state.user.barber,
+        status: 'pending',
+			})
+		})
+			.then(response => response.json())
+			.then(booking => {
+				if (booking.req_id){
+					this.loadBooking(booking);
+					this.onRouteChange('home');
+				}
+			})
+	}
+
 
   onRouteChange = (route) => {
     if (route === 'signout'){
@@ -102,6 +143,7 @@ class App extends Component {
         route={route} 
         onRouteChange={this.onRouteChange} 
         onInputChange={this.onInputChange}
+        loadUser={this.loadUser}
         status={status}
         name={name}
         />

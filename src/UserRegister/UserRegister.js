@@ -6,8 +6,8 @@ class UserRegister extends React.Component {
 		this.state = {
 			firstName: '',
 			lastName: '',
-			age: '',
-			gender: 'select',
+			age: null,
+			gender: '',
 			contactNum: '',
 			address: '',
 			email: '',
@@ -27,7 +27,7 @@ class UserRegister extends React.Component {
 	}
 
 	onSubmitSignIn = () => {
-		fetch('https://warm-shore-00390.herokuapp.com/register', {
+		fetch('http://localhost:3000/register', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -49,14 +49,13 @@ class UserRegister extends React.Component {
 		const {onRouteChange} = this.props;
 		return (
 			<div>
-				<h1 className="f-subheadline tc mh2">SUPREMO BARBERS - STA. CRUZ</h1>
+				<h1 className="f-subheadline tc mh2 mt3 mb2">SUPREMO BARBERS - STA. CRUZ</h1>
 				<article className="br4 ba bg-white b--black-10 mt1 mb4 w-100 w-50-m w-25-l mw6 shadow-5 center">
 					<main className="pa4 black-80">
 					<div className="measure">
 						<fieldset id="sign_up" className="ba b--transparent ph0 mh0">
 						<legend className="f2 tc fw6 ph0 mh0">REGISTER</legend>
 						<div className="mt2">
-							{/* <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label> */}
 							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
 								type="text" 
 								name="firstName"  
@@ -66,7 +65,6 @@ class UserRegister extends React.Component {
 							/>
 						</div>
 						<div className="mt2">
-							{/* <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label> */}
 							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
 								type="text" 
 								name="lastName"  
@@ -76,7 +74,6 @@ class UserRegister extends React.Component {
 							/>
 						</div>
 							<div className="mt2 db tc">
-								{/* <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label> */}
 								<input className="pa2 b mh2 mb2 pl3 ba br4 bg-light-gray hover-bg-white w-35" 
 									type="number" 
 									name="age"  
@@ -86,7 +83,6 @@ class UserRegister extends React.Component {
 									onChange={this.onRegisterChange}
 									placeholder="Age"
 								/>
-								{/* <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label> */}
 								<select className="pa2 mh2 mb2 b pl2 pr3 ba br4 bg-light-gray hover-bg-white w-50 dib" 
 								value={this.state.gender}
 								onChange={this.onRegisterChange}>
@@ -95,7 +91,6 @@ class UserRegister extends React.Component {
 								</select>
 							</div>
 						<div className="mt0">
-							{/* <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label> */}
 							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
 								type="tel" 
 								name="contactNum"  
@@ -106,7 +101,6 @@ class UserRegister extends React.Component {
 							/>
 						</div>
 						<div className="mt2">
-							{/* <label className="db fw6 lh-copy f6" htmlFor="Name">Name</label> */}
 							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
 								type="text" 
 								name="address"  
@@ -116,7 +110,6 @@ class UserRegister extends React.Component {
 							/>
 						</div>
 						<div className="mt2">
-							{/* <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label> */}
 							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
 								type="email" 
 								name="email"  
@@ -127,7 +120,6 @@ class UserRegister extends React.Component {
 
 						</div>
 						<div className="mb2 mt2">
-							{/* <label className="db fw6 lh-copy f6" htmlFor="password">Password</label> */}
 							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
 								type="password" 
 								name="password"  
