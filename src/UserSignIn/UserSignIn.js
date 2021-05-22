@@ -28,13 +28,10 @@ class UserSignIn extends React.Component {
 		})
 			.then(response => response.json())
 			.then(user => {
-				if (user.req_id){
-					this.props.loadBooking(user);
+				if (user.user_id){
 					this.props.loadUser(user);
 					this.props.onRouteChange('userhome');
 				} 
-				this.props.loadUser(user);
-				this.props.onRouteChange('userhome');
 			})
 	}
 

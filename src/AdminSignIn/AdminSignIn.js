@@ -18,19 +18,19 @@ class AdminSignIn extends React.Component {
 	}
 
 	onSubmitSignIn = () => {
-		fetch('https://warm-shore-00390.herokuapp.com/signin', {
+		fetch('http://localhost:3000/adminsignin', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
-				email: this.state.signInEmail,
-				password: this.state.signInPassword
+				email: this.state.adminEmail,
+				password: this.state.adminPassword
 			})
 		})
 			.then(response => response.json())
-			.then(user => {
-				if (user.id){
-					this.props.loadUser(user);
-					this.props.onRouteChange('home');
+			.then(admin => {
+				if (admin.admin_id){
+					this.props.loadAdmin(admin);
+					this.props.onRouteChange('adminhome');
 				}
 			})
 	}

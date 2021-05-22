@@ -2,28 +2,6 @@ import React, {Component} from 'react';
 import RenderRoute from './RenderRoute';
 import './App.css';
 
-const initialState = {
-  route: 'signin',
-  isUserSignedIn: false,
-  isAdminSignedIn: false,
-  user: {
-    id: '',
-    name: 'someone',
-    email: ''
-  },
-  booking: {
-    service: 'gupit supremo',
-    resDate: '',
-    resTime: '',
-    barber: 'anyone',
-    status: '',
-    reqId: ''
-  },
-  admin: {
-    id: ''
-  }
-};
-
 class App extends Component {
   constructor(props) {
     super(props);
@@ -35,8 +13,6 @@ class App extends Component {
         id: '',
         name: 'someone',
         email: '',
-      },
-      booking: {
         service: 'gupit supremo',
         resDate: '',
         resTime: '',
@@ -48,12 +24,47 @@ class App extends Component {
         id: ''
       }
     };
-    this.onInputChange = this.onInputChange.bind(this);
-    this.onBookingInputChange = this.onBookingInputChange.bind(this);
-    this.onSubmitBooking = this.onSubmitBooking.bind(this);
   }
 
+  resetState = () => {
+    this.setState({
+      route: 'signin',
+      isUserSignedIn: false,
+      isAdminSignedIn: false,
+      user: {
+        id: '',
+        name: 'someone',
+        email: '',
+        service: 'gupit supremo',
+        resDate: '',
+        resTime: '',
+        barber: 'anyone',
+        status: '',
+        reqId: ''
+      },
+      admin: {
+        id: ''
+      }
+    })
+  }
+
+
   loadUser = (data) => {
+    if (data.req_id){
+      this.setState(Object.assign(this.state.user, 
+        { 
+          id: data.user_id,
+          name: data.firstname,
+          email: data.user_email,
+          reqId: data.req_id,
+          service: data.service,
+          resDate: data.reqdate.split("T")[0],
+          resTime: data.reqtime,
+          barber: data.barber,
+          status: data.status
+        })
+      );
+    }
     this.setState(Object.assign(this.state.user, 
       { 
         id: data.user_id,
@@ -64,7 +75,7 @@ class App extends Component {
   }
   
   loadBooking = (data) => {
-    this.setState(Object.assign(this.state.booking, 
+    this.setState(Object.assign(this.state.user, 
       { 
         reqId: data.req_id,
         service: data.service,
@@ -79,8 +90,9 @@ class App extends Component {
   loadAdmin = (data) => {
     this.setState({
       admin: {
-      id: data.adminid,
-    }})
+      id: data
+    }
+    })
   }
 
   onInputChange = (event) =>{
@@ -95,28 +107,16 @@ class App extends Component {
     );
   }
 
-  onBookingInputChange = (event) =>{
-    const target = event.target;
-    const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
-
-    this.setState(Object.assign(this.state.booking, 
-      { 
-        [name]: value
-      })
-    );
-  }
-
   onSubmitBooking = () => {
 		fetch('http://localhost:3000/bookingrequest', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
 				user_id: this.state.user.id,
-        service: this.state.booking.service,
-        resDate: this.state.booking.resDate,
-        resTime: this.state.booking.resTime,
-        barber: this.state.booking.barber
+        service: this.state.user.service,
+        resDate: this.state.user.resDate,
+        resTime: this.state.user.resTime,
+        barber: this.state.user.barber
 			})
 		})
 			.then(response => response.json())
@@ -128,39 +128,35 @@ class App extends Component {
 			})
 	}
 
-
   onRouteChange = (route) => {
     if (route === 'signout'){
-      this.setState(initialState);
-    } else if (route === 'userhome'){
+      this.resetState();
+    } else if (route === 'userhome') {
       this.setState({isUserSignedIn: true});
-    } else if (route === 'adminhome'){
+    } else if (route === 'adminhome') {
       this.setState({isAdminSignedIn: true});
     }
-    this.setState({route: route});
-  };
+      this.setState({route: route});
+  }
 
   render() {
     const { route } = this.state;
-    const { name } = this.state.user;
-    const { barber, service, status } = this.state.booking;
+    const { name, barber, service, status } = this.state.user;
+    console.log('route', this.state.route);
     console.log("----------user-----------------")
         for (const key of Object.keys(this.state.user)) {    
             console.log(key, this.state.user[key]);
         }
-        console.log("----------booking------------------")
-        for (const key of Object.keys(this.state.booking)) {    
-            console.log(key, this.state.booking[key]);
-        }
+    console.log('route',this.state.route);
     return (
       <RenderRoute 
         route={route} 
         onRouteChange={this.onRouteChange} 
         onInputChange={this.onInputChange}
-        onBookingInputChange={this.onBookingInputChange}
         onSubmitBooking={this.onSubmitBooking}
         loadUser={this.loadUser}
         loadBooking={this.loadBooking}
+        loadAdmin={this.loadAdmin}
         barber={barber}
         service={service}
         status={status}
@@ -171,3 +167,23 @@ class App extends Component {
 }
 
 export default App;
+
+// const initialState = {
+//   route: 'signin',
+//   isUserSignedIn: false,
+//   isAdminSignedIn: false,
+//   user: {
+//     id: '',
+//     name: 'someone',
+//     email: '',
+//     service: 'gupit supremo',
+//     resDate: '',
+//     resTime: '',
+//     barber: 'anyone',
+//     status: '',
+//     reqId: ''
+//   },
+//   admin: {
+//     id: ''
+//   }
+// };
