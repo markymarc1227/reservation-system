@@ -17,13 +17,13 @@ class AdminSignIn extends React.Component {
 		this.setState({adminPassword: event.target.value})
 	}
 
-	onSubmitSignIn = () => {
+	onSubmitAdminSignIn = () => {
 		fetch('http://localhost:3000/adminsignin', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
-				email: this.state.adminEmail,
-				password: this.state.adminPassword
+				adminEmail: this.state.adminEmail,
+				adminPassword: this.state.adminPassword
 			})
 		})
 			.then(response => response.json())
@@ -68,7 +68,7 @@ class AdminSignIn extends React.Component {
 						</div>
 						</fieldset>
 						<div className="tc">
-						<input onClick={() => onRouteChange('adminhome')}  /*onClick={this.onSubmitSignIn}*/ className="f6 b black ph3 br4 pv2 input-reset ba bg-moon-gray grow pointer" 
+						<input onClick={this.onSubmitAdminSignIn} className="f6 b black ph3 br4 pv2 input-reset ba bg-moon-gray grow pointer" 
 							type="submit" 
 							value="Login"/>
 						</div>

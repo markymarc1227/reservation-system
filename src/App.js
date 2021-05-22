@@ -90,7 +90,7 @@ class App extends Component {
   loadAdmin = (data) => {
     this.setState({
       admin: {
-      id: data
+        id: data.admin_id
     }
     })
   }
@@ -148,6 +148,10 @@ class App extends Component {
             console.log(key, this.state.user[key]);
         }
     console.log('route',this.state.route);
+    console.log("----------admin-----------------")
+        for (const key of Object.keys(this.state.admin)) {    
+            console.log(key, this.state.admin[key]);
+        }
     return (
       <RenderRoute 
         route={route} 
