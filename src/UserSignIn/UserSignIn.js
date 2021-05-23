@@ -40,7 +40,7 @@ class UserSignIn extends React.Component {
 		return (
 			<div>
 				<h1 className="f-subheadline tc mh2">SUPREMO BARBERS - STA. CRUZ</h1>
-				<article className="br3 ba bg-black mv4 w-100 w-50-m w-25-l mw6 shadow-5 center">
+				<article className="br3 ba bg-black mv4 w-100 w-50-m w-30-l mw6 shadow-5 center">
 					<main className="pa4 black-80">
 					<div className="measure">
 						<fieldset id="sign_in" className="ba b--transparent ph0 mh0">

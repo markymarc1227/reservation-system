@@ -55,7 +55,7 @@ class UserRegister extends React.Component {
 		return (
 			<div>
 				<h1 className="f-subheadline tc mh2 mt3 mb2">SUPREMO BARBERS - STA. CRUZ</h1>
-				<article className="br4 ba bg-white b--black-10 mt1 mb4 w-100 w-50-m w-25-l mw6 shadow-5 center">
+				<article className="br4 ba bg-white b--black-10 mt1 mb4 w-100 w-50-m w-30-l mw6 shadow-5 center">
 					<main className="pa4 black-80">
 					<div className="measure">
 						<fieldset id="sign_up" className="ba b--transparent ph0 mh0">
@@ -79,7 +79,7 @@ class UserRegister extends React.Component {
 							/>
 						</div>
 							<div className="mt2 db tc">
-								<input className="pa2 b mh2 mb2 pl3 ba br4 bg-light-gray hover-bg-white w-35" 
+								<input className="pa2 b mh2 mb2 pl3 ba br4 bg-light-gray hover-bg-white w-35 dib" 
 									type="number" 
 									name="age"  
 									id="age"
