@@ -12,7 +12,7 @@ const RenderStatus = ({user, onSubmitBooking, onInputChange}) => {
     case 'pending':
       return <Pending/>;
     case 'rescheduled':
-      return <Rescheduled/>;
+      return <Rescheduled user={user}/>;
     case 'checked':
       return <HealthChecklist/>;
     case 'confirmed':

@@ -50,21 +50,6 @@ class App extends Component {
 
 
   loadUser = (data) => {
-    if (data.req_id){
-      this.setState(Object.assign(this.state.user, 
-        { 
-          id: data.user_id,
-          name: data.firstname,
-          email: data.user_email,
-          reqId: data.req_id,
-          service: data.service,
-          resDate: data.reqdate.split("T")[0],
-          resTime: data.reqtime,
-          barber: data.barber,
-          status: data.status
-        })
-      );
-    }
     this.setState(Object.assign(this.state.user, 
       { 
         id: data.user_id,
@@ -72,6 +57,9 @@ class App extends Component {
         email: data.user_email
       })
     );
+    if (data.req_id){
+      this.loadBooking(data);
+    }
   }
   
   loadBooking = (data) => {
@@ -80,7 +68,10 @@ class App extends Component {
         reqId: data.req_id,
         service: data.service,
         resDate: data.reqdate.split("T")[0],
-        resTime: data.reqtime,
+        resTime: new Date('1970-01-01T' + data.reqtime + 'Z')
+        .toLocaleTimeString({},
+            {timeZone:'UTC', hour12:true, hour:'numeric', minute:'numeric'}
+        ),
         barber: data.barber,
         status: data.status
       })
@@ -171,22 +162,3 @@ class App extends Component {
 
 export default App;
 
-// const initialState = {
-//   route: 'signin',
-//   isUserSignedIn: false,
-//   isAdminSignedIn: false,
-//   user: {
-//     id: '',
-//     name: 'someone',
-//     email: '',
-//     service: 'gupit supremo',
-//     resDate: '',
-//     resTime: '',
-//     barber: 'anyone',
-//     status: '',
-//     reqId: ''
-//   },
-//   admin: {
-//     id: ''
-//   }
-// };
