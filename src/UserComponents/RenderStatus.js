@@ -7,8 +7,8 @@ import Rescheduled from "./Rescheduled";
 import Services from "./Services";
 
 
-const RenderStatus = ({barber, service, status, onSubmitBooking, onInputChange}) => {
-  switch (status) {
+const RenderStatus = ({user, onSubmitBooking, onInputChange}) => {
+  switch (user.status) {
     case 'pending':
       return <Pending/>;
     case 'rescheduled':
@@ -20,7 +20,7 @@ const RenderStatus = ({barber, service, status, onSubmitBooking, onInputChange})
     default:
       return (
         <div className="flex flex-wrap">
-          <BookingForm barber={barber} service={service} onInputChange={onInputChange} onSubmitBooking={onSubmitBooking}/>
+          <BookingForm user={user} onInputChange={onInputChange} onSubmitBooking={onSubmitBooking}/>
           <Services/>
         </div>
       );

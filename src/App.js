@@ -141,7 +141,8 @@ class App extends Component {
 
   render() {
     const { route } = this.state;
-    const { name, barber, service, status } = this.state.user;
+    const { user } = this.state;
+
     console.log('route', this.state.route);
     console.log("----------user-----------------")
         for (const key of Object.keys(this.state.user)) {    
@@ -152,6 +153,7 @@ class App extends Component {
         for (const key of Object.keys(this.state.admin)) {    
             console.log(key, this.state.admin[key]);
         }
+
     return (
       <RenderRoute 
         route={route} 
@@ -161,10 +163,7 @@ class App extends Component {
         loadUser={this.loadUser}
         loadBooking={this.loadBooking}
         loadAdmin={this.loadAdmin}
-        barber={barber}
-        service={service}
-        status={status}
-        name={name}
+        user={user}
         />
     );
   }
