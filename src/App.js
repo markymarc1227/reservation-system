@@ -63,11 +63,17 @@ class App extends Component {
   }
   
   loadBooking = (data) => {
-    const rawDate = data.reqdate.split("T")[0];
-    const indivDate = rawDate.split("-");
-    const formatDate = new Date( indivDate[0], indivDate[1], indivDate[2]).toLocaleDateString({},
+    // const rawDate = data.reqdate.replace(".000Z", "");
+    // const currDate = rawDate.replace(/-/g, "/");
+    // const formatDate = new Date(data.reqdate).toLocaleDateString();
+
+    const formatDate = new Date(data.reqdate).toLocaleDateString({},
       { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}
   );
+
+
+    // const formatDate = new Date(currDate).toDateString();
+
     const formatTime = new Date('1970-01-01T' + data.reqtime + 'Z')
     .toLocaleTimeString({},
         {timeZone:'UTC', hour12:true, hour:'numeric', minute:'numeric'}

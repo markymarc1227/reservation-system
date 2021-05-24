@@ -36,16 +36,37 @@ class Rescheduled extends React.Component{
 
     onConfirm = () => {
 
-    }
+    };
 
     onCancel = () => {
         
-    }
+    };
 
+    onSubmitChange = () => {
+        fetch('http://localhost:3000/reschedule', {
+			method: 'put',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				user_id: this.props.user.id,
+                req_id: this.props.user.reqId,
+                newDate: this.state.newDate,
+                newTime: this.state.newTime,
+                newBarber: this.state.newBarber
+			})
+		})
+			.then(response => response.json())
+			.then(newbooking => {
+				if (newbooking.req_id){
+					this.props.loadBooking(newbooking);
+					this.props.onRouteChange('userhome');
+				}
+			})
+    };
     
     render(){
         const {user} = this.props;
         console.log(this.state);
+        console.log(this.props.user.reqId);
     return(
         <div>
             <RescheduleModal isModalShown={this.state.isModalShown} handleClose={this.hideModal}>
@@ -82,6 +103,13 @@ class Rescheduled extends React.Component{
                                 <option value="barber2">Barber 2</option>
                                 <option value="barber3">Barber 3</option>
                         </select>
+                </div>
+                <div className="tc mt3 mb2">
+                    <input 
+                    onClick={this.onSubmitChange} 
+                    className="white ph4 pv2 input-reset ba br4 b--black bg-black grow pointer f6 dib" 
+                    type="submit" 
+                    value="Submit"/>
                 </div>
             </RescheduleModal>
             <article className="br4 ba bg-white b--black-10 mv4 w-100 w-50-m w-40-l mw6 shadow-5 center">
