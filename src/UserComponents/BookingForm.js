@@ -30,7 +30,7 @@ const BookingForm = ({user, onInputChange, onSubmitBooking}) => {
                         type="date" 
                         name="resDate"  
                         id="resDate"
-                        min= {new Date().toISOString().split("T")[0]}
+                        min= {new Date().toISOString().replace(".000Z", "").split("T")[0]}
                         onChange={onInputChange}
                     />
                 </div>

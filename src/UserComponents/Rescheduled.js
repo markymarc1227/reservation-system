@@ -8,7 +8,7 @@ class Rescheduled extends React.Component{
             isModalShown: false,
             newDate: '',
             newTime: '',
-            newBarber: ''
+            newBarber: this.props.user.barber
         };
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -24,7 +24,7 @@ class Rescheduled extends React.Component{
 
     onSchedChange = (event) => {
         const target = event.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const value = target.value;
         const name = target.name;
 
         this.setState(Object.assign(this.state, 
@@ -42,7 +42,6 @@ class Rescheduled extends React.Component{
         
     }
 
-    
     
     render(){
         const {user} = this.props;
@@ -88,7 +87,8 @@ class Rescheduled extends React.Component{
             <article className="br4 ba bg-white b--black-10 mv4 w-100 w-50-m w-40-l mw6 shadow-5 center">
                 <main className="pa4 black-80 white">
                     <div className="tc f4 mt3 black ">Your request was rescheduled on:</div>
-                    <div className="tc f4 b pv4 black ">{user.resDate} at {user.resTime}</div>
+                    <div className="tc f4 b pt3 pb2 black ">{user.resDate}</div>
+                    <div className="tc f4 b pb3 black ">{user.resTime}</div>
                     <div className="tc f4 black ">Do you accept?</div>
                     <button className="white ph4 mv2 pv2 input-reset ba br4 b--transparent bg-green grow pointer f6 db center">
                         Confirm
@@ -97,7 +97,7 @@ class Rescheduled extends React.Component{
                     <button onClick={this.showModal} className="white ph4 mv2 pv2 input-reset ba br4 b--transparent bg-dark-green grow pointer f6 db center">
                         Reschedule
                     </button>
-                    <button className="white ph4 mt5 mb1 pv1 input-reset ba br4 b--transparent bg-red grow pointer f6 db center">
+                    <button className="white ph4 mt4 mb1 pv1 input-reset ba br4 b--transparent bg-red grow pointer f6 db center">
                         Cancel my appointment.
                     </button>
                 </main>

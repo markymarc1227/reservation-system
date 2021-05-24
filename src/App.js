@@ -63,15 +63,21 @@ class App extends Component {
   }
   
   loadBooking = (data) => {
+    const rawDate = data.reqdate.split("T")[0];
+    const indivDate = rawDate.split("-");
+    const formatDate = new Date( indivDate[0], indivDate[1], indivDate[2]).toLocaleDateString({},
+      { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}
+  );
+    const formatTime = new Date('1970-01-01T' + data.reqtime + 'Z')
+    .toLocaleTimeString({},
+        {timeZone:'UTC', hour12:true, hour:'numeric', minute:'numeric'}
+    );
     this.setState(Object.assign(this.state.user, 
       { 
         reqId: data.req_id,
         service: data.service,
-        resDate: data.reqdate.split("T")[0],
-        resTime: new Date('1970-01-01T' + data.reqtime + 'Z')
-        .toLocaleTimeString({},
-            {timeZone:'UTC', hour12:true, hour:'numeric', minute:'numeric'}
-        ),
+        resDate: formatDate,
+        resTime: formatTime,
         barber: data.barber,
         status: data.status
       })
