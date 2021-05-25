@@ -171,7 +171,8 @@ class HealthChecklist extends React.Component {
                             />No
                             </label>
                         </div>
-                        <p className="f5 mt1 mv3 ph5 black">I hereby authorize Supremo Barber, to collect and process the data indicated herein for the purpose of effecting control of the COVID-19 infection. I understand that my personal information is protected by RA 10173, Data Privacy Act of 2012, and that I am required by RA 11469, Bayanihan to Heal as One Act, to provide truthful information.</p>
+                        <p className="f5 mt1 mv3 ph5 black">I hereby authorize Supremo Barber, to collect and process the data indicated herein for the purpose of effecting control of the COVID-19 infection. I understand that my personal information is protected by RA 10173, Data Privacy Act of 2012, and that I am required by RA 11469, Bayanihan to Heal as One Act, to provide truthful information.
+                        </p>
                         <div className="tc mv2">
 							<input 
 							className="f6 white ph3 br4 pv2 input-reset ba b--transparent bg-black grow pointer" 
