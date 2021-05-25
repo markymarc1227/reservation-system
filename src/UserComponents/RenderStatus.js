@@ -7,16 +7,16 @@ import Rescheduled from "./Rescheduled";
 import Services from "./Services";
 
 
-const RenderStatus = ({user, onSubmitBooking, onInputChange, loadBooking, onRouteChange}) => {
+const RenderStatus = ({user, resetBooking, onSubmitBooking, onInputChange, loadBooking, loadUser, onRouteChange}) => {
   switch (user.status) {
     case 'pending':
       return <Pending/>;
     case 'rescheduled':
-      return <Rescheduled user={user} loadBooking={loadBooking} onRouteChange={onRouteChange}/>;
+      return <Rescheduled user={user} loadUser={loadUser} loadBooking={loadBooking} onRouteChange={onRouteChange} resetBooking={resetBooking}/>;
     case 'checked':
-      return <HealthChecklist/>;
+      return <HealthChecklist user={user} loadUser={loadUser} loadBooking={loadBooking} onRouteChange={onRouteChange}/>;
     case 'confirmed':
-      return <ConfirmedDetails/>;
+      return <ConfirmedDetails user={user} />;
     default:
       return (
         <div className="flex flex-wrap">

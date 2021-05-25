@@ -35,11 +35,39 @@ class Rescheduled extends React.Component{
     };
 
     onConfirm = () => {
-
+        fetch('http://localhost:3000/confirm', {
+			method: 'put',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				user_id: this.props.user.id,
+                req_id: this.props.user.reqId
+			})
+		})
+			.then(response => response.json())
+			.then(newbooking => {
+				if (newbooking.req_id){
+					this.props.loadBooking(newbooking);
+					this.props.onRouteChange('userhome');
+				}
+			})
     };
 
     onCancel = () => {
-        
+        fetch('http://localhost:3000/cancel', {
+			method: 'put',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+				user_id: this.props.user.id,
+                req_id: this.props.user.reqId
+			})
+		})
+			.then(response => response.json())
+			.then(newbooking => {
+				if (newbooking.req_id){
+                    this.props.resetBooking();
+					this.props.onRouteChange('userhome');
+				}
+			})
     };
 
     onSubmitChange = () => {
@@ -118,14 +146,14 @@ class Rescheduled extends React.Component{
                     <div className="tc f4 b pt3 pb2 black ">{user.resDate}</div>
                     <div className="tc f4 b pb3 black ">{user.resTime}</div>
                     <div className="tc f4 black ">Do you accept?</div>
-                    <button className="white ph4 mv2 pv2 input-reset ba br4 b--transparent bg-green grow pointer f6 db center">
+                    <button onClick = {this.onConfirm} className="white ph4 mv2 pv2 input-reset ba br4 b--transparent bg-green grow pointer f6 db center">
                         Confirm
                     </button>
                     <p className="tc f4 black mv0">----- or -----</p>
-                    <button onClick={this.showModal} className="white ph4 mv2 pv2 input-reset ba br4 b--transparent bg-dark-green grow pointer f6 db center">
+                    <button onClick = {this.showModal} className="white ph4 mv2 pv2 input-reset ba br4 b--transparent bg-dark-green grow pointer f6 db center">
                         Reschedule
                     </button>
-                    <button className="white ph4 mt4 mb1 pv1 input-reset ba br4 b--transparent bg-red grow pointer f6 db center">
+                    <button onClick = {this.onCancel} className="white ph4 mt4 mb1 pv1 input-reset ba br4 b--transparent bg-red grow pointer f6 db center">
                         Cancel my appointment.
                     </button>
                 </main>

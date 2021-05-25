@@ -8,15 +8,15 @@ class HealthChecklist extends React.Component {
             bodypain: false,
             headache: false,
             fever: false,
-            closecovid: "",
-            contactwsick: "",
-            travelledoutcountry: "",
-            travelledncr: ""
+            closecovid: "false",
+            contactwsick: "false",
+            travelledoutcountry: "false",
+            travelledncr: "false"
         }
         this.onFormChange = this.onFormChange.bind(this);
     }
 
-    onFormChange(event) {
+    onFormChange = (event) => {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
@@ -27,7 +27,32 @@ class HealthChecklist extends React.Component {
           })
         );
       }
+    
+    onSubmitChecklist = () => {
+        fetch('http://localhost:3000/checklist', {
+			method: 'post',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+                req_id: this.props.user.reqId,
+				sorethroat: this.state.sorethroat,
+                bodypain: this.state.bodypain,
+                headache: this.state.headache,
+                fever: this.state.fever,
+                closecovid: this.state.closecovid,
+                contactwsick: this.state.contactwsick,
+                travelledoutcountry: this.state.travelledoutcountry,
+                travelledncr: this.state.travelledncr
+			})
+		})
+			.then(response => response.json())
+			.then(details => {
+				if (details.req_id){
+					this.props.loadBooking(details);
+					this.props.onRouteChange('userhome');
+				}
+			})
 
+    }
     render() {
         console.log("----------------------------")
         for (const key of Object.keys(this.state)) {    
@@ -174,7 +199,8 @@ class HealthChecklist extends React.Component {
                         <p className="f5 mt1 mv3 ph5 black">I hereby authorize Supremo Barber, to collect and process the data indicated herein for the purpose of effecting control of the COVID-19 infection. I understand that my personal information is protected by RA 10173, Data Privacy Act of 2012, and that I am required by RA 11469, Bayanihan to Heal as One Act, to provide truthful information.
                         </p>
                         <div className="tc mv2">
-							<input 
+							<input
+                            onClick = {this.onSubmitChecklist} 
 							className="f6 white ph3 br4 pv2 input-reset ba b--transparent bg-black grow pointer" 
 							type="submit" 
 							value="CONFIRM"

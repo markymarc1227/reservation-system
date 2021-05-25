@@ -48,6 +48,18 @@ class App extends Component {
     })
   }
 
+  resetBooking = () => {
+    this.setState(Object.assign(this.state.user, 
+      { 
+        service: 'gupit supremo',
+        resDate: '',
+        resTime: '',
+        barber: 'anyone',
+        status: '',
+        reqId: ''
+      })
+    );
+  }
 
   loadUser = (data) => {
     this.setState(Object.assign(this.state.user, 
@@ -63,21 +75,14 @@ class App extends Component {
   }
   
   loadBooking = (data) => {
-    // const rawDate = data.reqdate.replace(".000Z", "");
-    // const currDate = rawDate.replace(/-/g, "/");
-    // const formatDate = new Date(data.reqdate).toLocaleDateString();
-
     const formatDate = new Date(data.reqdate).toLocaleDateString({},
       { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'}
   );
-
-
-    // const formatDate = new Date(currDate).toDateString();
-
     const formatTime = new Date('1970-01-01T' + data.reqtime + 'Z')
     .toLocaleTimeString({},
         {timeZone:'UTC', hour12:true, hour:'numeric', minute:'numeric'}
     );
+    
     this.setState(Object.assign(this.state.user, 
       { 
         reqId: data.req_id,
@@ -98,7 +103,7 @@ class App extends Component {
     })
   }
 
-  onInputChange = (event) =>{
+  onInputChange = (event) => {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
@@ -166,6 +171,7 @@ class App extends Component {
         loadUser={this.loadUser}
         loadBooking={this.loadBooking}
         loadAdmin={this.loadAdmin}
+        resetBooking={this.resetBooking}
         user={user}
         />
     );
