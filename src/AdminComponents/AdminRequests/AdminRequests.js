@@ -8,7 +8,8 @@ class AdminRequests extends Component {
         accept: "",
         resDate: "",
         resTime: "",
-        currentDate: new Date().toDateString()
+        currentDate: new Date().toDateString(),
+        pendingCustomers: []
     };
   }
 
