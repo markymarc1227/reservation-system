@@ -1,22 +1,25 @@
 import React from 'react';
-import {HeaderCard, CustomerCard} from './ScheduleCard';
+import {CustomerCard} from './ScheduleCard';
 
 const ScheduleCardList = ({schedCustomers}) => {
+
+  if (!schedCustomers.length){
+    return <h1 className="f1 tc pa2"> No customers for this date! </h1>
+  }
+
   return(
     <div>
-        <HeaderCard/>
-        
         {
           schedCustomers.map((customer, i) => {
             return (
               <CustomerCard
                 key={i}
-                user_id={customer.user_id}
-                req_id={customer.req_id}
-                name={customer.firstname +" "+ customer.lastname}
-                reqtime={customer.reqtime}
-                service={customer.service}
-                barber={customer.barber}
+                user_id={schedCustomers[i].user_id}
+                req_id={schedCustomers[i].req_id}
+                name={schedCustomers[i].firstname +" "+ schedCustomers[i].lastname}
+                reqtime={schedCustomers[i].reqtime}
+                service={schedCustomers[i].service}
+                barber={schedCustomers[i].barber}
               />
             );
           })

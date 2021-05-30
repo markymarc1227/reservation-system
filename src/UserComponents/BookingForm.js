@@ -16,15 +16,15 @@ const BookingForm = ({user, onInputChange, onSubmitBooking}) => {
                             value={user.service}
                             onChange={onInputChange}
                             name="service">
-                                <option value="gupit supremo">Gupit Supremo</option>
-                                <option value="gupit supremo w/ banlaw">Gupit Supremo w/ Banlaw</option>
-                                <option value="ahit supremo">Ahit Supremo</option>
-                                <option value="hair tattoo">Hair Tattoo</option>
-                                <option value="supremo espesyal">Supremo Espesyal</option>
-                                <option value="supremo espesyal w/ ahit">Supremo Espesyal w/ Ahit</option>
-                                <option value="linis tenga">Linis Tenga</option>
-                                <option value="scalp treatment">Scalp Treatment</option>
-                                <option value="perm">Perm</option>
+                                <option value="Gupit Supremo">Gupit Supremo</option>
+                                <option value="Gupit Supremo w/ Banlaw">Gupit Supremo w/ Banlaw</option>
+                                <option value="Ahit Supremo">Ahit Supremo</option>
+                                <option value="Hair Tattoo">Hair Tattoo</option>
+                                <option value="Supremo Espesyal">Supremo Espesyal</option>
+                                <option value="Supremo Espesyal w/ Ahit">Supremo Espesyal w/ Ahit</option>
+                                <option value="Linis Tenga">Linis Tenga</option>
+                                <option value="Scalp Treatment">Scalp Treatment</option>
+                                <option value="Perm">Perm</option>
                         </select>
                 </div>
                 <div className="mv2 tc">
@@ -54,10 +54,10 @@ const BookingForm = ({user, onInputChange, onSubmitBooking}) => {
                             name="barber"
                             onChange={onInputChange}
                             value={user.barber}>
-                                <option value="anyone">Anyone</option>
-                                <option value="barber1">Barber 1</option>
-                                <option value="barber2">Barber 2</option>
-                                <option value="barber3">Barber 3</option>
+                                <option value="Anyone">Anyone</option>
+                                <option value="Barber1">Barber 1</option>
+                                <option value="Barber2">Barber 2</option>
+                                <option value="Barber3">Barber 3</option>
                         </select>
                 </div>
                 </fieldset>

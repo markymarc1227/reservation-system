@@ -11,12 +11,12 @@ class App extends Component {
       isAdminSignedIn: false,
       user: {
         id: '',
-        name: 'someone',
+        name: 'Someone',
         email: '',
-        service: 'gupit supremo',
+        service: 'Gupit Supremo',
         resDate: '',
         resTime: '',
-        barber: 'anyone',
+        barber: 'Anyone',
         status: '',
         reqId: ''
       },
@@ -35,10 +35,10 @@ class App extends Component {
         id: '',
         name: 'someone',
         email: '',
-        service: 'gupit supremo',
+        service: 'Gupit Supremo',
         resDate: '',
         resTime: '',
-        barber: 'anyone',
+        barber: 'Anyone',
         status: '',
         reqId: ''
       },
@@ -51,10 +51,10 @@ class App extends Component {
   resetBooking = () => {
     this.setState(Object.assign(this.state.user, 
       { 
-        service: 'gupit supremo',
+        service: 'Gupit Supremo',
         resDate: '',
         resTime: '',
-        barber: 'anyone',
+        barber: 'Anyone',
         status: '',
         reqId: ''
       })

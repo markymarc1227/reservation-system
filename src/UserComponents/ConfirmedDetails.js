@@ -10,9 +10,9 @@ const ConfirmedDetails = ({user}) => {
                 <div className="b pv0 mv3 black ">Date:</div>
                 <div className="pv0 mv3 black ">{user.resDate}</div>
                 <div className="b pv0 mv3 black ">Service:</div>
-                <div className="pv0 mv3 black ">{user.service.toUpperCase()}</div>
+                <div className="pv0 mv3 black ">{user.service}</div>
                 <div className="b pv0 mv3 black ">Barber:</div>
-                <div className="pv0 mv3 black ">{user.barber.toUpperCase()}</div>
+                <div className="pv0 mv3 black ">{user.barber}</div>
             </main>
         </article>
     );

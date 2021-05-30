@@ -5,6 +5,7 @@ export const HeaderCard = () => {
   return(
     <div className="wrapper tc mh3 mv1 ba br2 bw1 f5 pa1 white bg-black b--black">
         <div>Time</div>
+        <div>Req ID</div>
         <div>Customer</div>
         <div>Service</div>
         <div>Staff</div>
@@ -25,6 +26,7 @@ export const CustomerCard = ({ user_id, req_id, name, reqtime, service, barber})
     return(
       <div className="wrapper tc mh3 mv1 ba br3 bw1 f5 pa1 black bg-white b--black">
         <div className="flex items-center justify-center">{formatTime}</div>
+        <div className="flex items-center justify-center">{req_id}</div>
         <div className="flex items-center justify-center">{formatName}</div>
         <div className="flex items-center justify-center">{service}</div>
         <div className="flex items-center justify-center">{barber}</div>
