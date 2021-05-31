@@ -11,12 +11,10 @@ class AdminSchedule extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        done: "",
-        noshow: "",
-        currentDate: standardDate,
-        schedCustomers: [],
-        showLoading: true,
-        currentCustomer: null
+      currentDate: standardDate,
+      schedCustomers: [],
+      showLoading: true,
+      currentCustomer: null
     };
   }
 
@@ -47,11 +45,32 @@ class AdminSchedule extends Component {
     this.setState({currentDate: value});
   };
 
-
   onCompleteCustomer = (event) => {
     this.setState({currentCustomer: event.target.value}, () => {
       // console.log("onclick", this.state.currentCustomer);
       fetch('http://localhost:3000/customerdone', {
+			method: 'put',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+        req_id: this.state.currentCustomer
+			})
+		})
+			.then(response => response.json())
+			.then(newCustomers => {
+				if (newCustomers){
+					this.getSchedCustomers()
+					// this.props.onSubrouteChange('schedule');
+				}
+			})
+      .catch(console.log);
+    });
+    // delete this.state.schedCustomers.req_id[value];
+  };
+
+  onCancelCustomer = (event) => {
+    this.setState({currentCustomer: event.target.value}, () => {
+      // console.log("onclick", this.state.currentCustomer);
+      fetch('http://localhost:3000/cancelcustomer', {
 			method: 'put',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -91,7 +110,7 @@ class AdminSchedule extends Component {
             />
         </div>
           <HeaderCard/>
-          { this.state.showLoading ? (<LoadingIndicator/>) : (<ScheduleCardList schedCustomers={this.state.schedCustomers} onCompleteCustomer={this.onCompleteCustomer}/>)
+          { this.state.showLoading ? (<LoadingIndicator/>) : (<ScheduleCardList schedCustomers={this.state.schedCustomers} onCompleteCustomer={this.onCompleteCustomer} onCancelCustomer={this.onCancelCustomer}/>)
           }
           
       </div>
