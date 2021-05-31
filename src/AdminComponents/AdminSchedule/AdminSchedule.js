@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ScheduleCardList from './ScheduleCardList';
 import {HeaderCard} from './ScheduleCard';
+import LoadingIndicator from '../LoadingIndicator';
 
 const offset = new Date().getTimezoneOffset();
 const offsettedDate = new Date(new Date().getTime() - (offset*60*1000));
@@ -13,11 +14,13 @@ class AdminSchedule extends Component {
         done: "",
         noshow: "",
         currentDate: standardDate,
-        schedCustomers: []
+        schedCustomers: [],
+        showLoading: true,
+        currentCustomer: null
     };
   }
 
-  componentDidMount() {
+  getSchedCustomers = () => {
     fetch(`http://localhost:3000/schedCustomers/${this.state.currentDate}`, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'}
@@ -25,29 +28,51 @@ class AdminSchedule extends Component {
 			.then(response => response.json())
 			.then(customers => {
 				this.setState({schedCustomers: customers})
+        this.setState({showLoading: false});
 			})
-  }
+      .catch(console.log);
+  };
+
+  componentDidMount() {
+    this.getSchedCustomers();
+  };
   
   onSchedDateChange = () => {
-    fetch(`http://localhost:3000/schedCustomers/${this.state.currentDate}`, {
-			method: 'get',
-			headers: {'Content-Type': 'application/json'}
-		})
-			.then(response => response.json())
-			.then(customers => {
-				this.setState({schedCustomers: customers})
-			})
-  }
+    this.getSchedCustomers();
+  };
 
   onDateChange = (event) => {
     const target = event.target;
     const value = target.value;
     this.setState({currentDate: value});
-  }
+  };
+
+
+  onCompleteCustomer = (event) => {
+    this.setState({currentCustomer: event.target.value}, () => {
+      // console.log("onclick", this.state.currentCustomer);
+      fetch('http://localhost:3000/customerdone', {
+			method: 'put',
+			headers: {'Content-Type': 'application/json'},
+			body: JSON.stringify({
+        req_id: this.state.currentCustomer
+			})
+		})
+			.then(response => response.json())
+			.then(newCustomers => {
+				if (newCustomers){
+					this.getSchedCustomers()
+					// this.props.onSubrouteChange('schedule');
+				}
+			})
+      .catch(console.log);
+    });
+    // delete this.state.schedCustomers.req_id[value];
+  };
 
   render() {
-    console.log(this.state.schedCustomers)
-
+    console.log(this.state.schedCustomers);
+    console.log("render",this.state.currentCustomer);
     return (
       <div>
         <h1 className="f1 mt0 pa0 mb2 mh3 tc underline"> Schedule </h1>
@@ -66,7 +91,9 @@ class AdminSchedule extends Component {
             />
         </div>
           <HeaderCard/>
-          <ScheduleCardList schedCustomers={this.state.schedCustomers}/>
+          { this.state.showLoading ? (<LoadingIndicator/>) : (<ScheduleCardList schedCustomers={this.state.schedCustomers} onCompleteCustomer={this.onCompleteCustomer}/>)
+          }
+          
       </div>
         
     );

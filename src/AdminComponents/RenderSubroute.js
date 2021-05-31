@@ -4,10 +4,10 @@ import AdminRequests from './AdminRequests/AdminRequests';
 import AdminCompleted from './AdminCompleted/AdminCompleted';
 
 
-const RenderSubroute = ({subroute}) => {
+const RenderSubroute = ({subroute, onSubrouteChange}) => {
   switch (subroute) {
     case 'schedule':
-        return <AdminSchedule/>;
+        return <AdminSchedule onSubrouteChange={onSubrouteChange}/>;
     case 'requests':
         return <AdminRequests/>;
     case 'completed':

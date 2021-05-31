@@ -20,7 +20,7 @@ class AdminHome extends Component {
     return (
         <div>
             <AdminNavigation onSubrouteChange={this.onSubrouteChange} onRouteChange={onRouteChange}/>
-            <RenderSubroute subroute={subroute}/>
+            <RenderSubroute onSubrouteChange={this.onSubrouteChange} subroute={subroute}/>
         </div>
         
     );

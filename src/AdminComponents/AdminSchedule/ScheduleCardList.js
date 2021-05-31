@@ -1,10 +1,10 @@
 import React from 'react';
 import {CustomerCard} from './ScheduleCard';
 
-const ScheduleCardList = ({schedCustomers}) => {
+const ScheduleCardList = ({schedCustomers, onCompleteCustomer}) => {
 
   if (!schedCustomers.length){
-    return <h1 className="f1 tc pa2"> No customers for this date! </h1>
+    return <h1 className="f1 tc pa2">No customers for this date.</h1>
   }
 
   return(
@@ -20,6 +20,7 @@ const ScheduleCardList = ({schedCustomers}) => {
                 reqtime={schedCustomers[i].reqtime}
                 service={schedCustomers[i].service}
                 barber={schedCustomers[i].barber}
+                onCompleteCustomer={onCompleteCustomer}
               />
             );
           })
