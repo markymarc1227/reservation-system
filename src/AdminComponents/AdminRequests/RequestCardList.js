@@ -1,7 +1,7 @@
 import React from 'react';
 import {CustomerCard} from './RequestCard';
 
-const RequestCardList = ({pendingCustomers}) => {
+const RequestCardList = ({pendingCustomers, onApproveCustomer, onOpenRescheduleModal}) => {
   if (!pendingCustomers.length){
     return <h1 className="f1 tc pa2">No customers for this date.</h1>
   }
@@ -19,6 +19,8 @@ const RequestCardList = ({pendingCustomers}) => {
                 reqtime={pendingCustomers[i].reqtime}
                 service={pendingCustomers[i].service}
                 barber={pendingCustomers[i].barber}
+                onApproveCustomer={onApproveCustomer}
+                onOpenRescheduleModal={onOpenRescheduleModal}
               />
             );
           })
