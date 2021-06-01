@@ -3,7 +3,7 @@ import {CustomerCard} from './RequestCard';
 
 const RequestCardList = ({pendingCustomers, onApproveCustomer, onOpenRescheduleModal}) => {
   if (!pendingCustomers.length){
-    return <h1 className="f1 tc pa2">No customers for this date.</h1>
+    return <h1 className="f1 tc pa2">No requests for this date.</h1>
   }
 
   return(
@@ -13,6 +13,7 @@ const RequestCardList = ({pendingCustomers, onApproveCustomer, onOpenRescheduleM
             return (
               <CustomerCard
                 key={i}
+                index={i}
                 user_id={pendingCustomers[i].user_id}
                 req_id={pendingCustomers[i].req_id}
                 name={pendingCustomers[i].firstname +" "+ pendingCustomers[i].lastname}

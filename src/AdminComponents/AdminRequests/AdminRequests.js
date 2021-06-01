@@ -14,9 +14,13 @@ class AdminRequests extends Component {
     this.state = {
       currentReqDate: standardDate,
       currentReqCustomer: null,
+      selectedCustomerName: "",
       pendingCustomers: [],
       showLoading: true,
-      isModalShown: false
+      isModalShown: false,
+      newReqDate: "",
+      newReqTime: "",
+      newBarber: ""
     };
   }
 
@@ -55,6 +59,19 @@ class AdminRequests extends Component {
     this.getPendingCustomers();
   };
 
+  onReschedInputChange = (event) => {
+      const target = event.target;
+      const value = target.value;
+      const name = target.name;
+
+      this.setState(Object.assign(this.state, 
+      { 
+          [name]: value
+      })
+    );
+    console.log(this.state);
+  };
+
   onApproveCustomer = (event) => {
     this.setState({currentReqCustomer: event.target.value}, () => {
       console.log("onclick", this.state.currentReqCustomer);
@@ -78,13 +95,15 @@ class AdminRequests extends Component {
   };
 
   onOpenRescheduleModal = (event) => {
-    this.showModal();
-    this.setState({currentReqCustomer: event.target.value}, () => {
-      console.log("onclick", this.state.currentReqCustomer);
-      
-      
+    const customerIndex = event.target.value;
+    this.setState({
+      currentReqCustomer: customerIndex,
+      selectedCustomerName: this.state.pendingCustomers[customerIndex].firstname,
+      newBarber: this.state.pendingCustomers[customerIndex].barber
+    }, () => {
+        this.showModal();
     });
-    // delete this.state.schedCustomers.req_id[value];
+    
   };
 
   onRescheduleCustomer = () => {
@@ -106,10 +125,55 @@ class AdminRequests extends Component {
   }
 
   render() {
+    const {selectedCustomerName } = this.state;
+
     return (
       <div>
         <Modal isModalShown={this.state.isModalShown} handleClose={this.hideModal}>
-                <p className="f4 b">New Schedule:</p>
+        <p className="f4 b">Select New Schedule for:</p>
+        <p className="f4 b">{selectedCustomerName.toUpperCase()}</p>
+                <div className="mv2 tc">
+                    <label className="db fw6 f6 tc" htmlFor="date">Date</label>
+                    <input className="b pa2 mt1 mb1 ba br4 bg-light-gray hover-bg-white w-50" 
+                        type="date" 
+                        name="newReqDate"  
+                        id="newReqDate"
+                        min= {new Date().toISOString().split("T")[0]}
+                        onChange={this.onReschedInputChange}
+                    />
+                </div>
+                <div className="mv2 tc">
+                    <label className="db fw6 f6 tc" htmlFor="time">Time</label>
+                    <input className="b pa2 mt1 ba br4 bg-light-gray hover-bg-white w-50" 
+                        type="time" 
+                        name="newReqTime"  
+                        id="newReqTime"
+                        min = "08:00"
+                        max = "20:00"
+                        onChange={this.onReschedInputChange}
+                    />
+                </div>
+                <div className="mt3 mb0 tc">
+                    <label className="db fw6 f6 tc" htmlFor="service">Preferred Barber</label>
+                        <select className="pa2 mh2 mt1 mb1 b pl2 pr3 ba br4 bg-light-gray hover-bg-white w-50" 
+                            name="newBarber"
+                            id="newBarber"
+                            value={this.state.newBarber}
+                            onChange={this.onReschedInputChange}
+                            >
+                                <option value="Anyone">Anyone</option>
+                                <option value="Barber1">Barber 1</option>
+                                <option value="Barber2">Barber 2</option>
+                                <option value="Barber3">Barber 3</option>
+                        </select>
+                </div>
+                <div className="tc mt3 mb2">
+                    <input 
+                    onClick={this.onSubmitChange} 
+                    className="white ph4 pv2 input-reset ba br4 b--black bg-black grow pointer f6 dib" 
+                    type="submit" 
+                    value="Submit"/>
+                </div>
         </Modal>
         <h1 className="f1 mt0 pa0 mb2 mh3 tc underline"> Requests </h1>
         <div className="flex flex-wrap items-center">
