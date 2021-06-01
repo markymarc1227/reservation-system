@@ -29,7 +29,11 @@ class AdminRequests extends Component {
   };
 
   hideModal = () => {
-      this.setState({ isModalShown: false });
+      this.setState({ 
+        isModalShown: false,
+        newReqDate: "",
+        newReqTime: ""
+      });
   };
 
   getPendingCustomers = () => {
@@ -97,8 +101,10 @@ class AdminRequests extends Component {
   onOpenRescheduleModal = (event) => {
     const customerIndex = event.target.value;
     this.setState({
-      currentReqCustomer: customerIndex,
+      currentReqCustomer: this.state.pendingCustomers[customerIndex].req_id,
       selectedCustomerName: this.state.pendingCustomers[customerIndex].firstname,
+      newReqDate: this.state.pendingCustomers[customerIndex].reqdate,
+      newReqTime: this.state.pendingCustomers[customerIndex].reqtime,
       newBarber: this.state.pendingCustomers[customerIndex].barber
     }, () => {
         this.showModal();
@@ -107,17 +113,21 @@ class AdminRequests extends Component {
   };
 
   onRescheduleCustomer = () => {
-    fetch('http://localhost:3000/approveRequest', {
+    fetch('http://localhost:3000/rescheduleRequest', {
 			method: 'put',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
-        req_id: this.state.currentReqCustomer
+        req_id: this.state.currentReqCustomer,
+        newReqDate: this.state.newReqDate,
+        newReqTime: this.state.newReqTime,
+        newBarber: this.state.newBarber
 			})
 		})
 			.then(response => response.json())
 			.then(newCustomers => {
 				if (newCustomers){
-					this.getPendingCustomers()
+					this.getPendingCustomers();
+          this.hideModal();
 					// this.props.onSubrouteChange('schedule');
 				}
 			})
@@ -130,8 +140,8 @@ class AdminRequests extends Component {
     return (
       <div>
         <Modal isModalShown={this.state.isModalShown} handleClose={this.hideModal}>
-        <p className="f4 b">Select New Schedule for:</p>
-        <p className="f4 b">{selectedCustomerName.toUpperCase()}</p>
+        <p className="f4 b mb3">Select New Schedule for:</p>
+        <p className="f3 b ma0">{selectedCustomerName.toUpperCase()}</p>
                 <div className="mv2 tc">
                     <label className="db fw6 f6 tc" htmlFor="date">Date</label>
                     <input className="b pa2 mt1 mb1 ba br4 bg-light-gray hover-bg-white w-50" 
@@ -140,6 +150,7 @@ class AdminRequests extends Component {
                         id="newReqDate"
                         min= {new Date().toISOString().split("T")[0]}
                         onChange={this.onReschedInputChange}
+                        value ={this.state.newReqDate}
                     />
                 </div>
                 <div className="mv2 tc">
@@ -150,6 +161,7 @@ class AdminRequests extends Component {
                         id="newReqTime"
                         min = "08:00"
                         max = "20:00"
+                        value ={this.state.newReqTime}
                         onChange={this.onReschedInputChange}
                     />
                 </div>
@@ -169,7 +181,7 @@ class AdminRequests extends Component {
                 </div>
                 <div className="tc mt3 mb2">
                     <input 
-                    onClick={this.onSubmitChange} 
+                    onClick={this.onRescheduleCustomer} 
                     className="white ph4 pv2 input-reset ba br4 b--black bg-black grow pointer f6 dib" 
                     type="submit" 
                     value="Submit"/>
