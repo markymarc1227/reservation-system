@@ -1,20 +1,26 @@
 import React from 'react';
-import {HeaderCard, CustomerCard} from './CompletedCard';
+import {CustomerCard} from './CompletedCard';
 
-const CompletedCardList = () => {
+const CompletedCardList = ({CompletedCustomers, onViewDetails}) => {
+  if (!CompletedCustomers.length){
+    return <h1 className="f1 tc pa2">No customers for this date.</h1>
+  }
+
   return(
     <div>
-        <HeaderCard/>
-        <CustomerCard/>
-        <CustomerCard/>
-        <CustomerCard/>
-        <CustomerCard/>
-        <CustomerCard/>
-        <CustomerCard/>
-        <CustomerCard/>
+        {
+          CompletedCustomers.map((customer, i) => {
+            return (
+              <CustomerCard
+                key={i}
+                index={i}
+                customerDetails={CompletedCustomers[i]}
+                onViewDetails={onViewDetails}
+              />
+            );
+          })
+        }
     </div>
-
-
   );
 };
 
