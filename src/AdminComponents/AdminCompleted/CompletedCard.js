@@ -34,7 +34,7 @@ export const CustomerCard = ({index, customerDetails, onViewDetails}) => {
         <div className="flex items-center justify-center">{customerDetails.barber}</div>
         <div className="flex items-center justify-center">{customerDetails.contact}</div>
         <div className="flex items-center justify-center">
-          <p onClick={onViewDetails} value={index} className="ma1 underline b pointer dim">Details</p>
+          <button onClick={onViewDetails} value={index} className="ma1 underline input-reset b--transparent pointer bg-transparent dim">Details</button>
         </div>
     </div>
     );

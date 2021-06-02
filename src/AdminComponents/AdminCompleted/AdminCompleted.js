@@ -15,7 +15,21 @@ class AdminCompleted extends Component {
       currentComDate: standardDate,
       completedCustomers: [],
       currentCustomerIndex: null,
-      selectedCustomer: "",
+      selectedCustomer: {
+        name: "",
+        userid: "",
+        reqid: "",
+        reqdate: "",
+        reqtime: "",
+        barber: "",
+        service: "",
+        address: "",
+        fever: "",
+        closecovid: "",
+        contactwsick: "",
+        travelledoutcountry: "",
+        travelledncr: ""
+      },
       showLoading: true,
       isModalShown: false
     };
@@ -57,18 +71,48 @@ class AdminCompleted extends Component {
   };
 
   onViewDetails = (event) => {
-    this.setState({currentCustomerIndex: event.target.value}, () => {
-      this.showModal()
-    });
+    const customerIndex = event.target.value;
+    console.log("customer index", customerIndex)
+    this.setState(Object.assign(this.state.selectedCustomer, 
+      { 
+        name: this.state.completedCustomers[customerIndex].firstname,
+        userid: this.state.completedCustomers[customerIndex].user_id,
+        service: this.state.completedCustomers[customerIndex].service,
+        address: this.state.completedCustomers[customerIndex].address,
+        sorethroat : this.state.completedCustomers[customerIndex].sorethroat,
+        bodypain : this.state.completedCustomers[customerIndex].bodypain,
+        headache : this.state.completedCustomers[customerIndex].headache,
+        fever: this.state.completedCustomers[customerIndex].fever,
+        closecovid: this.state.completedCustomers[customerIndex].closecovid,
+        contactwsick: this.state.completedCustomers[customerIndex].contactwsick,
+        travelledoutcountry: this.state.completedCustomers[customerIndex].travelledoutcountry,
+        travelledncr: this.state.completedCustomers[customerIndex].travelledoutncr
+      }), () => {
+        this.showModal()
+      }
+    );
   };
 
   render() {
-    const {completedCustomers, currentCustomerIndex} = this.state;
+    const {completedCustomers, selectedCustomer} = this.state;
+    console.log(completedCustomers);
     return (
       <div>
       <Modal isModalShown={this.state.isModalShown} handleClose={this.hideModal}>
             <p className="f4 b mb3">Appointment Details for:</p>
-            <p className="f3 b ma0"></p>
+            <p className="f3 b ma0 mb3 underline">{selectedCustomer.name.toUpperCase()}</p>
+            <p className="f5 b ma1"> User ID:  {selectedCustomer.userid}</p>
+            <p className="f5 b ma1"> Service:  {selectedCustomer.service}</p>
+            <p className="f5 b ma1"> Address:  {selectedCustomer.address}</p>
+            <p className="f4 b ma2"> Health Checklist Results:</p>
+            <p className="f5 b ma1"> Sore Throat:  {selectedCustomer.sorethroat}</p>
+            <p className="f5 b ma1"> Body Pain:  {selectedCustomer.bodypain}</p>
+            <p className="f5 b ma1"> Headache:  {selectedCustomer.headache}</p>
+            <p className="f5 b ma1"> Fever:  {selectedCustomer.fever}</p>
+            <p className="f5 b ma1"> Body Pain:  {selectedCustomer.bodypain}</p>
+            <p className="f5 b ma1"> Body Pain:  {selectedCustomer.bodypain}</p>
+            <p className="f5 b ma1"> Body Pain:  {selectedCustomer.bodypain}</p>
+            <p className="f5 b ma1"> Body Pain:  {selectedCustomer.bodypain}</p>
       </Modal>
         <h1 className="f1 mt0 pa0 mb2 mh3 tc underline"> Completed </h1>
         <div className="flex flex-wrap items-center">
