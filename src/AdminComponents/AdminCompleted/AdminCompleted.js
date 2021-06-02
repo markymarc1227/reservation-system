@@ -79,14 +79,14 @@ class AdminCompleted extends Component {
         userid: this.state.completedCustomers[customerIndex].user_id,
         service: this.state.completedCustomers[customerIndex].service,
         address: this.state.completedCustomers[customerIndex].address,
-        sorethroat : this.state.completedCustomers[customerIndex].sorethroat,
-        bodypain : this.state.completedCustomers[customerIndex].bodypain,
-        headache : this.state.completedCustomers[customerIndex].headache,
-        fever: this.state.completedCustomers[customerIndex].fever,
+        sorethroat : this.state.completedCustomers[customerIndex].sorethroat.toString().toUpperCase(),
+        bodypain : this.state.completedCustomers[customerIndex].bodypain.toString().toUpperCase(),
+        headache : this.state.completedCustomers[customerIndex].headache.toString().toUpperCase(),
+        fever: this.state.completedCustomers[customerIndex].fever.toString().toUpperCase(),
         closecovid: this.state.completedCustomers[customerIndex].closecovid,
         contactwsick: this.state.completedCustomers[customerIndex].contactwsick,
         travelledoutcountry: this.state.completedCustomers[customerIndex].travelledoutcountry,
-        travelledncr: this.state.completedCustomers[customerIndex].travelledoutncr
+        travelledncr: this.state.completedCustomers[customerIndex].travelledncr
       }), () => {
         this.showModal()
       }
@@ -109,10 +109,10 @@ class AdminCompleted extends Component {
             <p className="f5 b ma1"> Body Pain:  {selectedCustomer.bodypain}</p>
             <p className="f5 b ma1"> Headache:  {selectedCustomer.headache}</p>
             <p className="f5 b ma1"> Fever:  {selectedCustomer.fever}</p>
-            <p className="f5 b ma1"> Body Pain:  {selectedCustomer.bodypain}</p>
-            <p className="f5 b ma1"> Body Pain:  {selectedCustomer.bodypain}</p>
-            <p className="f5 b ma1"> Body Pain:  {selectedCustomer.bodypain}</p>
-            <p className="f5 b ma1"> Body Pain:  {selectedCustomer.bodypain}</p>
+            <p className="f5 b ma1"> Had contact with COVID-19 case:  {selectedCustomer.closecovid.toUpperCase()}</p>
+            <p className="f5 b ma1"> Had contact with sick person:  {selectedCustomer.contactwsick.toUpperCase()}</p>
+            <p className="f5 b ma1"> Travelled outside the Philippines:  {selectedCustomer.travelledoutcountry.toUpperCase()}</p>
+            <p className="f5 b ma1"> Travelled outside NCR:  {selectedCustomer.travelledncr.toUpperCase()}</p>
       </Modal>
         <h1 className="f1 mt0 pa0 mb2 mh3 tc underline"> Completed </h1>
         <div className="flex flex-wrap items-center">
