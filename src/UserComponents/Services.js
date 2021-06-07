@@ -2,7 +2,7 @@ import React from 'react';
 
 const Services = ( ) => {
     return(
-        <article className="br4 ba bg-black b--black-10 mv4 w-100 w-50-m w-30-l mw6 shadow-5 center">
+        <article className="br4 ba bg-black b--black-10 mv3 w-100 w-50-m w-30-l mw6 shadow-5 center">
             <main className="pa4 black-80 white">
             <div className="measure">
                 <div className="f3 b ph0 mh0 tc">Services Offered:</div>

@@ -136,6 +136,23 @@ class App extends Component {
 			})
 	}
 
+  onRefresh = () => {
+    fetch('http://localhost:3000/refresh', {
+      method: 'post',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        req_id: this.state.user.reqId,
+      })
+    })
+    .then(response => response.json())
+    .then(newbooking => {
+      if (newbooking.req_id){
+        this.loadBooking(newbooking);
+        this.onRouteChange('userhome');
+      }
+    })
+  };
+
   onRouteChange = (route) => {
     if (route === 'signout'){
       this.resetState();
@@ -168,6 +185,7 @@ class App extends Component {
         onRouteChange={this.onRouteChange} 
         onInputChange={this.onInputChange}
         onSubmitBooking={this.onSubmitBooking}
+        onRefresh={this.onRefresh}
         loadUser={this.loadUser}
         loadBooking={this.loadBooking}
         loadAdmin={this.loadAdmin}

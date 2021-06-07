@@ -5,7 +5,7 @@ const BookingForm = ({user, onInputChange, onSubmitBooking}) => {
     const currentDate = new Date(new Date().getTime() - (offset*60*1000))
     const minDate = currentDate.toISOString().split('T')[0]
     return(
-        <article className="br4 ba bg-white b--black-10 mv4 w-100 w-50-m w-30-l mw6 shadow-5 center">
+        <article className="br4 ba bg-white b--black-10 mv3 w-100 w-50-m w-30-l mw6 shadow-5 center">
             <main className="pa4 black-80">
             <div className="measure">
                 <fieldset id="booking_form" className="ba b--transparent ph0 mh0">

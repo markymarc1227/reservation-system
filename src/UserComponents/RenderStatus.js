@@ -7,10 +7,10 @@ import Rescheduled from "./Rescheduled";
 import Services from "./Services";
 
 
-const RenderStatus = ({user, resetBooking, onSubmitBooking, onInputChange, loadBooking, loadUser, onRouteChange}) => {
+const RenderStatus = ({user, resetBooking, onSubmitBooking, onRefresh, onInputChange, loadBooking, loadUser, onRouteChange}) => {
   switch (user.status) {
     case 'pending':
-      return <Pending/>;
+      return <Pending onRefresh={onRefresh}/>;
     case 'rescheduled':
       return <Rescheduled user={user} loadUser={loadUser} loadBooking={loadBooking} onRouteChange={onRouteChange} resetBooking={resetBooking}/>;
     case 'checked':
