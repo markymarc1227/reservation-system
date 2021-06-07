@@ -19,7 +19,6 @@ class UserSignIn extends React.Component {
 	}
 
 	onSubmitSignIn = () => {
-		this.setState({formError: 0})
 		fetch('http://localhost:3000/signin', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
@@ -83,14 +82,14 @@ class UserSignIn extends React.Component {
 							<p onClick={() => onRouteChange('adminsignin')} className="f6 white underline link dim db pointer tc">Admin</p>
 						</div>
 
-						{ this.state.formError === 1 ? <p className="f5 mt3 mb0 white pa2 tc ba br3 b--white">Incorrect form submission. <br/> Please fill out every field.</p> : <p></p>
-						}
-
-						{ this.state.formError === 2 ? <p className="f5 white pa2 tc ba br3 b--white">Invalid credentials. <br/> Make sure email and password are correct.</p> : <p></p>
+						{ this.state.formError === 1 ? <p className="f5 mt3 mb0 white pa2 tc ba br3 b--white">Incorrect form submission. <br/> Please fill out every field.</p> 
+						: (
+							this.state.formError === 2 ? <p className="f5 white pa2 tc ba br3 b--white">Invalid credentials. <br/> Make sure email and password are correct.</p> : <p></p>
+							)
 						}
 					</div>
 					</main>
-				</article>		
+				</article>	
 			</div>
 		);
 	}

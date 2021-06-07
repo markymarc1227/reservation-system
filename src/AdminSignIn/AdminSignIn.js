@@ -5,7 +5,8 @@ class AdminSignIn extends React.Component {
 		super(props);
 		this.state = {
 			adminEmail: '',
-			adminPassword: ''
+			adminPassword: '',
+			adminFormError: 0
 		}
 	}
 
@@ -31,6 +32,12 @@ class AdminSignIn extends React.Component {
 				if (admin.admin_id){
 					this.props.loadAdmin(admin);
 					this.props.onRouteChange('adminhome');
+				}
+				else if (admin === "incorrect form submission"){
+					this.setState({adminFormError: 1})
+				} 
+				else if (admin === "wrong credentials"){
+					this.setState({adminFormError: 2})
 				}
 			})
 	}
@@ -75,6 +82,11 @@ class AdminSignIn extends React.Component {
 						<div className="lh-copy mt3">
 							<p onClick={() => onRouteChange('signin')} className="f6 white underline link dim db pointer tc">User Sign In</p>
 						</div>
+						{ this.state.adminFormError === 1 ? <p className="f5 mt3 mb0 white pa2 tc ba br3 b--white">Incorrect form submission. <br/> Please fill out every field.</p> 
+						: (
+							this.state.adminFormError === 2 ? <p className="f5 white pa2 tc ba br3 b--white">Invalid credentials. <br/> Make sure email and password are correct.</p> : <p></p>
+							)
+						}
 					</div>
 					</main>
 				</article>		
