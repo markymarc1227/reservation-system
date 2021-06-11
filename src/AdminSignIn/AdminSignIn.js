@@ -84,7 +84,7 @@ class AdminSignIn extends React.Component {
 						</div>
 						{ this.state.adminFormError === 1 ? <p className="f5 mt3 mb0 white pa2 tc ba br3 b--white">Incorrect form submission. <br/> Please fill out every field.</p> 
 						: (
-							this.state.adminFormError === 2 ? <p className="f5 white pa2 tc ba br3 b--white">Invalid credentials. <br/> Make sure email and password are correct.</p> : <p></p>
+							this.state.adminFormError === 2 ? <p className="f5 mt3 mb0 white pa2 tc ba br3 b--white">Invalid credentials. <br/> Make sure email and password are correct.</p> : <p></p>
 							)
 						}
 					</div>

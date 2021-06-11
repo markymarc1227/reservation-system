@@ -46,7 +46,7 @@ class UserSignIn extends React.Component {
 		const { onRouteChange } = this.props;
 		return (
 			<div>
-				<h1 className="f-subheadline tc mh2">SUPREMO BARBERS - STA. CRUZ</h1>
+				<h1 className="f-subheadline tc mh2 mb0">SUPREMO BARBERS - STA. CRUZ</h1>
 				<article className="br3 ba bg-black mv4 w-100 w-50-m w-30-l mw6 shadow-5 center">
 					<main className="pa4 black-80">
 					<div className="measure">
@@ -84,7 +84,7 @@ class UserSignIn extends React.Component {
 
 						{ this.state.formError === 1 ? <p className="f5 mt3 mb0 white pa2 tc ba br3 b--white">Incorrect form submission. <br/> Please fill out every field.</p> 
 						: (
-							this.state.formError === 2 ? <p className="f5 white pa2 tc ba br3 b--white">Invalid credentials. <br/> Make sure email and password are correct.</p> : <p></p>
+							this.state.formError === 2 ? <p className="f5 mt3 mb0 white pa2 tc ba br3 b--white">Invalid credentials. <br/> Make sure email and password are correct.</p> : <p></p>
 							)
 						}
 					</div>

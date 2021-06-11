@@ -167,18 +167,6 @@ class App extends Component {
   render() {
     const { route } = this.state;
     const { user } = this.state;
-
-    console.log('route', this.state.route);
-    console.log("----------user-----------------")
-        for (const key of Object.keys(this.state.user)) {    
-            console.log(key, this.state.user[key]);
-        }
-    console.log('route',this.state.route);
-    console.log("----------admin-----------------")
-        for (const key of Object.keys(this.state.admin)) {    
-            console.log(key, this.state.admin[key]);
-        }
-
     return (
       <RenderRoute 
         route={route} 

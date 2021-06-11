@@ -11,12 +11,15 @@ class UserRegister extends React.Component {
 			contactNum: '',
 			address: '',
 			email: '',
-			password: ''
+			password: '',
+			registerError: 0,
+			emailError: false,
+			phoneError: false
 		};
 		this.onRegisterChange = this.onRegisterChange.bind(this);
 	}
 
-	onRegisterChange(event) {
+	onRegisterChange = (event) => {
 		const target = event.target;
 		const value = target.type === 'checkbox' ? target.checked : target.value;
 		const name = target.name;
@@ -26,28 +29,75 @@ class UserRegister extends React.Component {
 		});
 	}
 
+	validateEmail = (event) => {
+
+		const target = event.target;
+		const value = target.value;
+		const name = target.name;
+
+		const mailformat = /^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6})*$/;
+		if(value.match(mailformat)){
+			this.setState({
+				[name]: value,
+				emailError: false
+			});
+		}
+		else{
+			this.setState({emailError: true})
+		}
+	}
+
+	phoneValidator = (event) => {
+
+	const target = event.target;
+	const value = target.value;
+	const name = target.name;
+
+	const phoneno = /^\d{11}$/;
+	if(value.match(phoneno) && value.slice(0,2) === "09"){
+		this.setState({
+			[name]: value,
+			phoneError: false
+		});
+		}
+		else{
+			this.setState({phoneError: true})
+		}
+	}
+
+
 	onSubmitRegister = () => {
-		fetch('http://localhost:3000/register', {
-			method: 'post',
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify({
-				email: this.state.email,
-				password: this.state.password,
-				firstName: this.state.firstName,
-				lastName: this.state.lastName,
-				age: this.state.age,
-				gender: this.state.gender,
-				contactNum: this.state.contactNum,
-				address: this.state.address,
-				})
-		})
-			.then(response => response.json())
-			.then(user => {
-				if (user.user_id){
-					this.props.loadUser(user)
-					this.props.onRouteChange('userhome');
-				}
+		if(!this.state.emailError && !this.state.phoneError){
+			fetch('http://localhost:3000/register', {
+				method: 'post',
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify({
+					email: this.state.email,
+					password: this.state.password,
+					firstName: this.state.firstName,
+					lastName: this.state.lastName,
+					age: this.state.age,
+					gender: this.state.gender,
+					contactNum: this.state.contactNum,
+					address: this.state.address,
+					})
 			})
+				.then(response => response.json())
+				.then(user => {
+					if (user.user_id){
+						this.props.loadUser(user)
+						this.props.onRouteChange('userhome');
+					}
+					else if (user === "incorrect form submission"){
+						this.setState({formError: 1})
+					} 
+					else if (user === "unable to register"){
+						this.setState({formError: 2})
+					}
+				})
+		} else {
+			this.setState({formError: 1})
+		}
 	}
 
 	render() {
@@ -101,11 +151,14 @@ class UserRegister extends React.Component {
 								type="tel" 
 								name="contactNum"  
 								id="contactNum"
-								onChange={this.onRegisterChange}
+								onChange={this.phoneValidator}
 								placeholder="09XXXXXXXXX"
 								pattern="[0-9]{15}"
 							/>
 						</div>
+						{ 
+						this.state.phoneError === true ? <p className="b f7 mt1 mb0 black bg-moon-gray pa2 tc ba br3 b--black">Please follow the 09XXXXXXXXX pattern.</p> : true
+						}
 						<div className="mt2">
 							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
 								type="text" 
@@ -120,11 +173,13 @@ class UserRegister extends React.Component {
 								type="email" 
 								name="email"  
 								id="email"
-								onChange={this.onRegisterChange}
+								onChange={this.validateEmail}
 								placeholder="Email"
 								/>
-
 						</div>
+						{ 
+						this.state.emailError === true ? <p className="b f7 mt1 mb0 black bg-moon-gray pa2 tc ba br3 b--black">Please enter a valid email.</p> : true
+						}
 						<div className="mb2 mt2">
 							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
 								type="password" 
@@ -146,6 +201,13 @@ class UserRegister extends React.Component {
 						<div className="tc mt3 mb2">
 							<p onClick={() => onRouteChange('signin')} className="f6 b black underline link dim db pointer tc">Back to Login</p>
 						</div>
+
+						{ this.state.formError === 1 ? <p className="b f5 mt3 mb0 black bg-moon-gray pa2 tc ba br3 b--black">Incorrect form submission. <br/> Please fill out every field correctly.</p> 
+						: (
+							this.state.formError === 2 ? <p className="b f5 mt3 mb0 black bg-moon-gray pa2 tc ba br3 b--black">Unable to register. <br/> Your email may be already in use.<br/> Please try with a different email.</p> : <p></p>
+							)
+						}
+
 					</div>
 					</main>
 				</article>

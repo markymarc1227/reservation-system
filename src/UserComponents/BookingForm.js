@@ -43,8 +43,8 @@ const BookingForm = ({user, onInputChange, onSubmitBooking}) => {
                         type="time" 
                         name="resTime"  
                         id="resTime"
-                        min = "08:00"
-                        max = "20:00"
+                        min = "08:00:00"
+                        max = "20:00:00"
                         onChange={onInputChange}
                     />
                 </div>
