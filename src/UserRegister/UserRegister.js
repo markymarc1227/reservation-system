@@ -49,20 +49,20 @@ class UserRegister extends React.Component {
 
 	phoneValidator = (event) => {
 
-	const target = event.target;
-	const value = target.value;
-	const name = target.name;
+		const target = event.target;
+		const value = target.value;
+		const name = target.name;
 
-	const phoneno = /^\d{11}$/;
-	if(value.match(phoneno) && value.slice(0,2) === "09"){
-		this.setState({
-			[name]: value,
-			phoneError: false
-		});
-		}
-		else{
-			this.setState({phoneError: true})
-		}
+		const phoneno = /^\d{11}$/;
+		if(value.match(phoneno) && value.slice(0,2) === "09"){
+			this.setState({
+				[name]: value,
+				phoneError: false
+			});
+			}
+			else{
+				this.setState({phoneError: true})
+			}
 	}
 
 
@@ -157,7 +157,7 @@ class UserRegister extends React.Component {
 							/>
 						</div>
 						{ 
-						this.state.phoneError === true ? <p className="b f7 mt1 mb0 black bg-moon-gray pa2 tc ba br3 b--black">Please follow the 09XXXXXXXXX pattern.</p> : true
+						this.state.phoneError ? <p className="b f7 mt1 mb0 black bg-moon-gray pa2 tc ba br3 b--black">Please follow the 09XXXXXXXXX pattern.</p> : true
 						}
 						<div className="mt2">
 							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 
@@ -178,7 +178,7 @@ class UserRegister extends React.Component {
 								/>
 						</div>
 						{ 
-						this.state.emailError === true ? <p className="b f7 mt1 mb0 black bg-moon-gray pa2 tc ba br3 b--black">Please enter a valid email.</p> : true
+						this.state.emailError ? <p className="b f7 mt1 mb0 black bg-moon-gray pa2 tc ba br3 b--black">Please enter a valid email.</p> : true
 						}
 						<div className="mb2 mt2">
 							<input className="pa2 b pl3 input-reset ba br4 bg-light-gray hover-bg-white w-100" 

@@ -8,7 +8,9 @@ class Rescheduled extends React.Component{
             isModalShown: false,
             newDate: '',
             newTime: '',
-            newBarber: this.props.user.barber
+            newBarber: this.props.user.barber,
+            hastimeError: false,
+            hasReschedFormError: 0
         };
         this.showModal = this.showModal.bind(this);
         this.hideModal = this.hideModal.bind(this);
@@ -27,11 +29,19 @@ class Rescheduled extends React.Component{
         const value = target.value;
         const name = target.name;
 
-        this.setState(Object.assign(this.state, 
-        { 
-            [name]: value
-        })
-        );
+        this.setState({[name]: value});
+    };
+
+    onReschedTimeChange = (event) => {
+        this.setState({hastimeError: false});
+        const target = event.target;
+        const value = target.value;
+        const hour = value.slice(0,2)
+        if (parseInt(hour) >= 8 && parseInt(hour) <= 21) {
+            this.onSchedChange(event);
+        } else {
+            this.setState({hastimeError: true});
+        }
     };
 
     onConfirm = () => {
@@ -70,7 +80,8 @@ class Rescheduled extends React.Component{
 			})
     };
 
-    onSubmitChange = () => {
+    onSubmitChange = () => { 
+    if(!this.state.hastimeError) {
         fetch('http://localhost:3000/reschedule', {
 			method: 'put',
 			headers: {'Content-Type': 'application/json'},
@@ -87,14 +98,19 @@ class Rescheduled extends React.Component{
 				if (newbooking.req_id){
 					this.props.loadBooking(newbooking);
 					this.props.onRouteChange('userhome');
-				}
+				} else if (newbooking === "incorrect form submission"){
+                    this.setState({hasReschedFormError: 1})
+                  } else if (newbooking === "unable to reschedule request"){
+                    this.setState({hasReschedFormError: 2})
+                  }
 			})
+    } else {
+        this.setState({hasReschedFormError: 1})
+    }
     };
     
     render(){
         const {user} = this.props;
-        console.log(this.state);
-        console.log(this.props.user.reqId);
     return(
         <div>
             <RescheduleModal isModalShown={this.state.isModalShown} handleClose={this.hideModal}>
@@ -117,9 +133,12 @@ class Rescheduled extends React.Component{
                         id="newTime"
                         min = "08:00"
                         max = "20:00"
-                        onChange={this.onSchedChange}
+                        onChange={this.onReschedTimeChange}
                     />
                 </div>
+                { 
+                    this.state.hastimeError ? <p className="b f7 mt1 mb0 black bg-moon-gray pa2 tc ba br3 b--black">Please select a time between 8:00am to 10:00pm.</p> : true
+				}
                 <div className="mt3 mb0 tc">
                     <label className="db fw6 f6 tc" htmlFor="service">Preferred Barber</label>
                         <select className="pa2 mh2 mt1 mb1 b pl2 pr3 ba br4 bg-light-gray hover-bg-white w-50" 
@@ -139,6 +158,11 @@ class Rescheduled extends React.Component{
                     type="submit" 
                     value="Submit"/>
                 </div>
+                { this.state.hasReschedFormError === 1 ? <p className="b f5 mt3 mb0 black bg-moon-gray pa2 tc ba br3 b--black">Incorrect form submission. <br/> Please fill out every field correctly.</p> 
+						: (
+							this.state.hasReschedFormError === 2 ? <p className="b f5 mt3 mb0 black bg-moon-gray pa2 tc ba br3 b--black">Unable to reschedule. <br/> Please try again.</p> : <p></p>
+							)
+						}
             </RescheduleModal>
             <article className="br4 ba bg-white b--black-10 mv4 w-100 w-50-m w-40-l mw6 shadow-5 center">
                 <main className="pa4 black-80 white">

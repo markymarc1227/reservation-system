@@ -72,7 +72,6 @@ class AdminCompleted extends Component {
 
   onViewDetails = (event) => {
     const customerIndex = event.target.value;
-    console.log("customer index", customerIndex)
     this.setState(Object.assign(this.state.selectedCustomer, 
       { 
         name: this.state.completedCustomers[customerIndex].firstname,
@@ -95,7 +94,6 @@ class AdminCompleted extends Component {
 
   render() {
     const {completedCustomers, selectedCustomer} = this.state;
-    console.log(completedCustomers);
     return (
       <div>
       <Modal isModalShown={this.state.isModalShown} handleClose={this.hideModal}>
@@ -133,7 +131,6 @@ class AdminCompleted extends Component {
         <HeaderCard/>
         { this.state.showLoading ? (<LoadingIndicator/>) : (<CompletedCardList 
         CompletedCustomers={completedCustomers} onViewDetails={this.onViewDetails}
-        // onOpenRescheduleModal={this.onOpenRescheduleModal}
 
         />)
           }

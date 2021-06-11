@@ -9,6 +9,7 @@ class App extends Component {
       route: 'signin',
       isUserSignedIn: false,
       isAdminSignedIn: false,
+      hasBookingFormError: 0,
       user: {
         id: '',
         name: 'Someone',
@@ -31,6 +32,7 @@ class App extends Component {
       route: 'signin',
       isUserSignedIn: false,
       isAdminSignedIn: false,
+      hasBookingFormError: 0,
       user: {
         id: '',
         name: 'someone',
@@ -115,6 +117,18 @@ class App extends Component {
     );
   }
 
+  onTimeChange = (event) => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState(Object.assign(this.state.user, 
+      { 
+        [name]: value
+      })
+    );
+  }
+
   onSubmitBooking = () => {
 		fetch('http://localhost:3000/bookingrequest', {
 			method: 'post',
@@ -132,7 +146,11 @@ class App extends Component {
 				if (booking.req_id){
 					this.loadBooking(booking);
 					this.onRouteChange('userhome');
-				}
+				} else if (booking === "incorrect form submission"){
+          this.setState({hasBookingFormError: 1})
+        } else if (booking === "unable to book request"){
+          this.setState({hasBookingFormError: 2})
+        }
 			})
 	}
 
@@ -165,8 +183,7 @@ class App extends Component {
   }
 
   render() {
-    const { route } = this.state;
-    const { user } = this.state;
+    const { route, user, hasBookingFormError } = this.state;
     return (
       <RenderRoute 
         route={route} 
@@ -179,6 +196,7 @@ class App extends Component {
         loadAdmin={this.loadAdmin}
         resetBooking={this.resetBooking}
         user={user}
+        hasBookingFormError={hasBookingFormError}
         />
     );
   }

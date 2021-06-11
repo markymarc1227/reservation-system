@@ -73,12 +73,10 @@ class AdminRequests extends Component {
           [name]: value
       })
     );
-    console.log(this.state);
   };
 
   onApproveCustomer = (event) => {
     this.setState({currentReqCustomer: event.target.value}, () => {
-      console.log("onclick", this.state.currentReqCustomer);
       fetch('http://localhost:3000/approveRequest', {
 			method: 'put',
 			headers: {'Content-Type': 'application/json'},
@@ -90,12 +88,10 @@ class AdminRequests extends Component {
 			.then(newCustomers => {
 				if (newCustomers){
 					this.getPendingCustomers()
-					// this.props.onSubrouteChange('schedule');
 				}
 			})
       .catch(console.log);
     });
-    // delete this.state.schedCustomers.req_id[value];
   };
 
   onOpenRescheduleModal = (event) => {
@@ -128,7 +124,6 @@ class AdminRequests extends Component {
 				if (newCustomers){
 					this.getPendingCustomers();
           this.hideModal();
-					// this.props.onSubrouteChange('schedule');
 				}
 			})
       .catch(console.log);

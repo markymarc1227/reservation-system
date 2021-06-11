@@ -47,7 +47,6 @@ class AdminSchedule extends Component {
 
   onCompleteCustomer = (event) => {
     this.setState({currentCustomer: event.target.value}, () => {
-      // console.log("onclick", this.state.currentCustomer);
       fetch('http://localhost:3000/customerdone', {
 			method: 'put',
 			headers: {'Content-Type': 'application/json'},
@@ -59,17 +58,14 @@ class AdminSchedule extends Component {
 			.then(newCustomers => {
 				if (newCustomers){
 					this.getSchedCustomers()
-					// this.props.onSubrouteChange('schedule');
 				}
 			})
       .catch(console.log);
     });
-    // delete this.state.schedCustomers.req_id[value];
   };
 
   onCancelCustomer = (event) => {
     this.setState({currentCustomer: event.target.value}, () => {
-      // console.log("onclick", this.state.currentCustomer);
       fetch('http://localhost:3000/cancelcustomer', {
 			method: 'put',
 			headers: {'Content-Type': 'application/json'},
@@ -81,17 +77,13 @@ class AdminSchedule extends Component {
 			.then(newCustomers => {
 				if (newCustomers){
 					this.getSchedCustomers()
-					// this.props.onSubrouteChange('schedule');
 				}
 			})
       .catch(console.log);
     });
-    // delete this.state.schedCustomers.req_id[value];
   };
 
   render() {
-    console.log(this.state.schedCustomers);
-    console.log("render",this.state.currentCustomer);
     return (
       <div>
         <h1 className="f1 mt0 pa0 mb2 mh3 tc underline"> Schedule </h1>
