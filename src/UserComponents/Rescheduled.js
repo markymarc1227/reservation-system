@@ -45,7 +45,7 @@ class Rescheduled extends React.Component{
     };
 
     onConfirm = () => {
-        fetch('http://localhost:3000/confirm', {
+        fetch('https://safe-peak-29017.herokuapp.com/confirm', {
 			method: 'put',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -63,7 +63,7 @@ class Rescheduled extends React.Component{
     };
 
     onCancel = () => {
-        fetch('http://localhost:3000/cancel', {
+        fetch('https://safe-peak-29017.herokuapp.com/cancel', {
 			method: 'put',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -82,7 +82,7 @@ class Rescheduled extends React.Component{
 
     onSubmitChange = () => { 
     if(!this.state.hastimeError) {
-        fetch('http://localhost:3000/reschedule', {
+        fetch('https://safe-peak-29017.herokuapp.com/reschedule', {
 			method: 'put',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({

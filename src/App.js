@@ -130,7 +130,7 @@ class App extends Component {
   }
 
   onSubmitBooking = () => {
-		fetch('http://localhost:3000/bookingrequest', {
+		fetch('https://safe-peak-29017.herokuapp.com/bookingrequest', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -155,7 +155,7 @@ class App extends Component {
 	}
 
   onRefresh = () => {
-    fetch('http://localhost:3000/refresh', {
+    fetch('https://safe-peak-29017.herokuapp.com/refresh', {
       method: 'post',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({

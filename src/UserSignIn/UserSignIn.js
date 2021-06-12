@@ -1,4 +1,5 @@
 import React from 'react';
+import UserLoadingIndicator from '../UserComponents/UserLoadingIndicator';
 
 class UserSignIn extends React.Component {
 	constructor(props) {
@@ -6,7 +7,8 @@ class UserSignIn extends React.Component {
 		this.state = {
 			signInEmail: '',
 			signInPassword: '',
-			formError: 0
+			formError: 0,
+			showUserLoading: false
 		}
 	}
 
@@ -19,7 +21,8 @@ class UserSignIn extends React.Component {
 	}
 
 	onSubmitSignIn = () => {
-		fetch('http://localhost:3000/signin', {
+		this.setState({showUserLoading: true, formError:0});
+		fetch('https://safe-peak-29017.herokuapp.com/signin', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -29,6 +32,7 @@ class UserSignIn extends React.Component {
 			})	
 			.then(response => response.json())
 			.then(user => {
+				this.setState({showUserLoading: false});
 				if (user.user_id){
 					this.props.loadUser(user);
 					this.props.onRouteChange('userhome');
@@ -40,7 +44,7 @@ class UserSignIn extends React.Component {
 					this.setState({formError: 2})
 				}
 			})
-	}
+		}
 
 	render() {
 		const { onRouteChange } = this.props;
@@ -81,7 +85,7 @@ class UserSignIn extends React.Component {
 							<p onClick={() => onRouteChange('register')} className="f6 white underline link dim db pointer tc">Register</p>
 							<p onClick={() => onRouteChange('adminsignin')} className="f6 white underline link dim db pointer tc">Admin</p>
 						</div>
-
+						{ this.state.showUserLoading ? (<UserLoadingIndicator/>) : <p></p>}
 						{ this.state.formError === 1 ? <p className="f5 mt3 mb0 white pa2 tc ba br3 b--white">Incorrect form submission. <br/> Please fill out every field.</p> 
 						: (
 							this.state.formError === 2 ? <p className="f5 mt3 mb0 white pa2 tc ba br3 b--white">Invalid credentials. <br/> Make sure email and password are correct.</p> : <p></p>

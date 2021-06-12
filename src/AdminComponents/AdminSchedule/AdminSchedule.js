@@ -19,7 +19,7 @@ class AdminSchedule extends Component {
   }
 
   getSchedCustomers = () => {
-    fetch(`http://localhost:3000/schedCustomers/${this.state.currentDate}`, {
+    fetch(`https://safe-peak-29017.herokuapp.com/schedCustomers/${this.state.currentDate}`, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'}
 		})
@@ -47,7 +47,7 @@ class AdminSchedule extends Component {
 
   onCompleteCustomer = (event) => {
     this.setState({currentCustomer: event.target.value}, () => {
-      fetch('http://localhost:3000/customerdone', {
+      fetch('https://safe-peak-29017.herokuapp.com/customerdone', {
 			method: 'put',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -66,7 +66,7 @@ class AdminSchedule extends Component {
 
   onCancelCustomer = (event) => {
     this.setState({currentCustomer: event.target.value}, () => {
-      fetch('http://localhost:3000/cancelcustomer', {
+      fetch('https://safe-peak-29017.herokuapp.com/cancelcustomer', {
 			method: 'put',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({

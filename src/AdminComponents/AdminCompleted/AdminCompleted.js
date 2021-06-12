@@ -36,7 +36,7 @@ class AdminCompleted extends Component {
   }
 
   getCompletedCustomers = () => {
-    fetch(`http://localhost:3000/completedCustomers/${this.state.currentComDate}`, {
+    fetch(`https://safe-peak-29017.herokuapp.com/completedCustomers/${this.state.currentComDate}`, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'}
 		})

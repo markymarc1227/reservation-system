@@ -1,4 +1,5 @@
 import React from 'react';
+import UserLoadingIndicator from '../UserComponents/UserLoadingIndicator';
 
 class UserRegister extends React.Component {
 	constructor(props) {
@@ -14,7 +15,8 @@ class UserRegister extends React.Component {
 			password: '',
 			registerError: 0,
 			emailError: false,
-			phoneError: false
+			phoneError: false,
+			showRegisterLoading: false
 		};
 		this.onRegisterChange = this.onRegisterChange.bind(this);
 	}
@@ -67,8 +69,9 @@ class UserRegister extends React.Component {
 
 
 	onSubmitRegister = () => {
+		this.setState({showRegisterLoading: true, registerError:0});
 		if(!this.state.emailError && !this.state.phoneError){
-			fetch('http://localhost:3000/register', {
+			fetch('https://safe-peak-29017.herokuapp.com/register', {
 				method: 'post',
 				headers: {'Content-Type': 'application/json'},
 				body: JSON.stringify({
@@ -84,6 +87,7 @@ class UserRegister extends React.Component {
 			})
 				.then(response => response.json())
 				.then(user => {
+					this.setState({showRegisterLoading: false});
 					if (user.user_id){
 						this.props.loadUser(user)
 						this.props.onRouteChange('userhome');
@@ -201,7 +205,7 @@ class UserRegister extends React.Component {
 						<div className="tc mt3 mb2">
 							<p onClick={() => onRouteChange('signin')} className="f6 b black underline link dim db pointer tc">Back to Login</p>
 						</div>
-
+						{ this.state.showRegisterLoading ? (<UserLoadingIndicator/>) : <p></p>}
 						{ this.state.formError === 1 ? <p className="b f5 mt3 mb0 black bg-moon-gray pa2 tc ba br3 b--black">Incorrect form submission. <br/> Please fill out every field correctly.</p> 
 						: (
 							this.state.formError === 2 ? <p className="b f5 mt3 mb0 black bg-moon-gray pa2 tc ba br3 b--black">Unable to register. <br/> Your email may be already in use.<br/> Please try with a different email.</p> : <p></p>

@@ -1,4 +1,5 @@
 import React from 'react';
+import LoadingIndicator from '../AdminComponents/LoadingIndicator';
 
 class AdminSignIn extends React.Component {
 	constructor(props) {
@@ -6,7 +7,8 @@ class AdminSignIn extends React.Component {
 		this.state = {
 			adminEmail: '',
 			adminPassword: '',
-			adminFormError: 0
+			adminFormError: 0,
+			showAdminLoginLoading: false
 		}
 	}
 
@@ -19,7 +21,8 @@ class AdminSignIn extends React.Component {
 	}
 
 	onSubmitAdminSignIn = () => {
-		fetch('http://localhost:3000/adminsignin', {
+		this.setState({showAdminLoginLoading: true, adminFormError: 0});
+		fetch('https://safe-peak-29017.herokuapp.com/adminsignin', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -29,6 +32,7 @@ class AdminSignIn extends React.Component {
 		})
 			.then(response => response.json())
 			.then(admin => {
+				this.setState({showAdminLoginLoading: false});
 				if (admin.admin_id){
 					this.props.loadAdmin(admin);
 					this.props.onRouteChange('adminhome');
@@ -82,6 +86,7 @@ class AdminSignIn extends React.Component {
 						<div className="lh-copy mt3">
 							<p onClick={() => onRouteChange('signin')} className="f6 white underline link dim db pointer tc">User Sign In</p>
 						</div>
+						{ this.state.showAdminLoginLoading ? (<LoadingIndicator/>) : <p></p>}
 						{ this.state.adminFormError === 1 ? <p className="f5 mt3 mb0 white pa2 tc ba br3 b--white">Incorrect form submission. <br/> Please fill out every field.</p> 
 						: (
 							this.state.adminFormError === 2 ? <p className="f5 mt3 mb0 white pa2 tc ba br3 b--white">Invalid credentials. <br/> Make sure email and password are correct.</p> : <p></p>

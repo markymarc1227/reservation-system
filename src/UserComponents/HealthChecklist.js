@@ -29,7 +29,7 @@ class HealthChecklist extends React.Component {
       }
     
     onSubmitChecklist = () => {
-        fetch('http://localhost:3000/checklist', {
+        fetch('https://safe-peak-29017.herokuapp.com/checklist', {
 			method: 'post',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({

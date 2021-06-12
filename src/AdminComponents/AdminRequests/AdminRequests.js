@@ -37,7 +37,7 @@ class AdminRequests extends Component {
   };
 
   getPendingCustomers = () => {
-    fetch(`http://localhost:3000/pendingCustomers/${this.state.currentReqDate}`, {
+    fetch(`https://safe-peak-29017.herokuapp.com/pendingCustomers/${this.state.currentReqDate}`, {
 			method: 'get',
 			headers: {'Content-Type': 'application/json'}
 		})
@@ -77,7 +77,7 @@ class AdminRequests extends Component {
 
   onApproveCustomer = (event) => {
     this.setState({currentReqCustomer: event.target.value}, () => {
-      fetch('http://localhost:3000/approveRequest', {
+      fetch('https://safe-peak-29017.herokuapp.com/approveRequest', {
 			method: 'put',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
@@ -109,7 +109,7 @@ class AdminRequests extends Component {
   };
 
   onRescheduleCustomer = () => {
-    fetch('http://localhost:3000/rescheduleRequest', {
+    fetch('https://safe-peak-29017.herokuapp.com/rescheduleRequest', {
 			method: 'put',
 			headers: {'Content-Type': 'application/json'},
 			body: JSON.stringify({
