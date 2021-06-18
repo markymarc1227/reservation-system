@@ -69,8 +69,8 @@ class UserRegister extends React.Component {
 
 
 	onSubmitRegister = () => {
-		this.setState({showRegisterLoading: true, registerError:0});
 		if(!this.state.emailError && !this.state.phoneError){
+			this.setState({showRegisterLoading: true, registerError:0});
 			fetch('https://safe-peak-29017.herokuapp.com/register', {
 				method: 'post',
 				headers: {'Content-Type': 'application/json'},
