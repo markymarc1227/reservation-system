@@ -183,8 +183,8 @@ class AdminRequests extends Component {
                 </div>
         </Modal>
         <h1 className="f1 mt0 pa0 mb2 mh3 tc underline"> Requests </h1>
-        <div className="flex flex-wrap items-center">
-            <div className="f3 ml3 mr3 b">{new Date(this.state.currentReqDate).toDateString()}</div>
+        <div className="flex flex-wrap items-center justify-center">
+            <div className="f3 ml3 mr3 b ba ph3 pv1 br4 b--transparent bg-moon-gray">{new Date(this.state.currentReqDate).toDateString()}</div>
             <input className="b f6 bw1 b--black pv1 pl3 pr3 mt1 mb1 ba br4 bg-light-silver hover-bg-moon-gray" 
                         type="date" 
                         name="requestDate"  

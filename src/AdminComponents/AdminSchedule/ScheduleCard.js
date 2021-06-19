@@ -31,8 +31,8 @@ export const CustomerCard = ({ user_id, req_id, name, reqtime, service, barber, 
         <div className="flex items-center justify-center">{service}</div>
         <div className="flex items-center justify-center">{barber}</div>
         <div className="flex flex-wrap center justify-around">
-          <button onClick={onCompleteCustomer} value={req_id} className="ba br2 bw1 pv0 ph2 mv1 mh3 green bg-white b--green grow pointer">&#10004;</button>
-          <button onClick={onCancelCustomer} value={req_id} className="ba br2 bw1 pv0 ph2 mv1 mh3 red bg-white b--red grow pointer">&#10006;</button>
+          <button onClick={onCompleteCustomer} value={req_id} className="ba b br3 bw1 pv0 ph2 mv1 mh3 green bg-light-green b--green grow pointer">Done</button>
+          <button onClick={onCancelCustomer} value={req_id} className="ba b br3 bw1 pv0 ph2 mv1 mh3 dark-red bg-light-red b--red grow pointer">No-show</button>
         </div>
     </div>
     );

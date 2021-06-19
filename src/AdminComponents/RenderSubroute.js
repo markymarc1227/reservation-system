@@ -4,14 +4,14 @@ import AdminRequests from './AdminRequests/AdminRequests';
 import AdminCompleted from './AdminCompleted/AdminCompleted';
 
 
-const RenderSubroute = ({subroute, onSubrouteChange}) => {
+const RenderSubroute = ({subroute, onSubrouteChange, checklistAnswerConverter}) => {
   switch (subroute) {
     case 'schedule':
         return <AdminSchedule onSubrouteChange={onSubrouteChange}/>;
     case 'requests':
         return <AdminRequests/>;
     case 'completed':
-        return <AdminCompleted/>;
+        return <AdminCompleted checklistAnswerConverter={checklistAnswerConverter}/>;
     default:
         return <AdminSchedule/>;
   }

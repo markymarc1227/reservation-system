@@ -78,14 +78,14 @@ class AdminCompleted extends Component {
         userid: this.state.completedCustomers[customerIndex].user_id,
         service: this.state.completedCustomers[customerIndex].service,
         address: this.state.completedCustomers[customerIndex].address,
-        sorethroat : this.state.completedCustomers[customerIndex].sorethroat.toString().toUpperCase(),
-        bodypain : this.state.completedCustomers[customerIndex].bodypain.toString().toUpperCase(),
-        headache : this.state.completedCustomers[customerIndex].headache.toString().toUpperCase(),
-        fever: this.state.completedCustomers[customerIndex].fever.toString().toUpperCase(),
-        closecovid: this.state.completedCustomers[customerIndex].closecovid,
-        contactwsick: this.state.completedCustomers[customerIndex].contactwsick,
-        travelledoutcountry: this.state.completedCustomers[customerIndex].travelledoutcountry,
-        travelledncr: this.state.completedCustomers[customerIndex].travelledncr
+        sorethroat : this.state.completedCustomers[customerIndex].sorethroat,
+        bodypain : this.state.completedCustomers[customerIndex].bodypain,
+        headache : this.state.completedCustomers[customerIndex].headache,
+        fever: this.state.completedCustomers[customerIndex].fever,
+        closecovid: this.state.completedCustomers[customerIndex].closecovid === 'true',
+        contactwsick: this.state.completedCustomers[customerIndex].contactwsick === 'true',
+        travelledoutcountry: this.state.completedCustomers[customerIndex].travelledoutcountry === 'true',
+        travelledncr: this.state.completedCustomers[customerIndex].travelledncr === 'true'
       }), () => {
         this.showModal()
       }
@@ -94,6 +94,7 @@ class AdminCompleted extends Component {
 
   render() {
     const {completedCustomers, selectedCustomer} = this.state;
+    const {checklistAnswerConverter} = this.props;
     return (
       <div>
       <Modal isModalShown={this.state.isModalShown} handleClose={this.hideModal}>
@@ -103,18 +104,18 @@ class AdminCompleted extends Component {
             <p className="f5 b ma1"> Service:  {selectedCustomer.service}</p>
             <p className="f5 b ma1"> Address:  {selectedCustomer.address}</p>
             <p className="f4 b ma2"> Health Checklist Results:</p>
-            <p className="f5 b ma1"> Sore Throat:  {selectedCustomer.sorethroat}</p>
-            <p className="f5 b ma1"> Body Pain:  {selectedCustomer.bodypain}</p>
-            <p className="f5 b ma1"> Headache:  {selectedCustomer.headache}</p>
-            <p className="f5 b ma1"> Fever:  {selectedCustomer.fever}</p>
-            <p className="f5 b ma1"> Had contact with COVID-19 case:  {selectedCustomer.closecovid.toUpperCase()}</p>
-            <p className="f5 b ma1"> Had contact with sick person:  {selectedCustomer.contactwsick.toUpperCase()}</p>
-            <p className="f5 b ma1"> Travelled outside the Philippines:  {selectedCustomer.travelledoutcountry.toUpperCase()}</p>
-            <p className="f5 b ma1"> Travelled outside NCR:  {selectedCustomer.travelledncr.toUpperCase()}</p>
+            <p className="f5 b ma1"> Sore Throat:  {checklistAnswerConverter(selectedCustomer.sorethroat)}</p>
+            <p className="f5 b ma1"> Body Pain:  {checklistAnswerConverter(selectedCustomer.bodypain)}</p>
+            <p className="f5 b ma1"> Headache:  {checklistAnswerConverter(selectedCustomer.headache)}</p>
+            <p className="f5 b ma1"> Fever:  {checklistAnswerConverter(selectedCustomer.fever)}</p>
+            <p className="f5 b ma1"> Had contact with COVID-19 case:  {checklistAnswerConverter(selectedCustomer.closecovid)}</p>
+            <p className="f5 b ma1"> Had contact with sick person:  {checklistAnswerConverter(selectedCustomer.contactwsick)}</p>
+            <p className="f5 b ma1"> Travelled outside the Philippines:  {checklistAnswerConverter(selectedCustomer.travelledoutcountry)}</p>
+            <p className="f5 b ma1"> Travelled outside NCR:  {checklistAnswerConverter(selectedCustomer.travelledncr)}</p>
       </Modal>
         <h1 className="f1 mt0 pa0 mb2 mh3 tc underline"> Completed </h1>
-        <div className="flex flex-wrap items-center">
-            <div className="f3 ml3 mr3 b">{new Date(this.state.currentComDate).toDateString()}</div>
+        <div className="flex flex-wrap items-center justify-center">
+            <div className="f3 ml3 mr3 b ba ph3 pv1 br4 b--transparent bg-moon-gray">{new Date(this.state.currentComDate).toDateString()}</div>
             <input className="b f6 bw1 b--black pv1 pl3 pr3 mt1 mb1 ba br4 bg-light-silver hover-bg-moon-gray" 
                         type="date" 
                         name="comDate"  

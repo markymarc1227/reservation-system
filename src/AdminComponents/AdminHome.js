@@ -14,13 +14,20 @@ class AdminHome extends Component {
     this.setState({subroute: subroute});
   };
 
+  checklistAnswerConverter = (answer) => {
+    if (answer){
+      return "Yes"
+    }
+    return "No"
+  };
+
   render() {
     const {subroute} = this.state;
     const {onRouteChange} = this.props;
     return (
         <div>
             <AdminNavigation onSubrouteChange={this.onSubrouteChange} onRouteChange={onRouteChange}/>
-            <RenderSubroute onSubrouteChange={this.onSubrouteChange} subroute={subroute}/>
+            <RenderSubroute onSubrouteChange={this.onSubrouteChange} subroute={subroute} checklistAnswerConverter={this.checklistAnswerConverter}/>
         </div>
         
     );
