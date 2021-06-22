@@ -131,7 +131,8 @@ class AdminRequests extends Component {
 
   render() {
     const {selectedCustomerName } = this.state;
-
+    console.log(this.state.pendingCustomers);
+    console.log(this.state.currentReqDate);
     return (
       <div>
         <Modal isModalShown={this.state.isModalShown} handleClose={this.hideModal}>
@@ -150,15 +151,41 @@ class AdminRequests extends Component {
                 </div>
                 <div className="mv2 tc">
                     <label className="db fw6 f6 tc" htmlFor="time">Time</label>
-                    <input className="b pa2 mt1 ba br4 bg-light-gray hover-bg-white w-50" 
-                        type="time" 
+                    <select className="b pa2 mt1 ba br4 bg-light-gray hover-bg-white w-50" 
                         name="newReqTime"  
-                        id="newReqTime"
-                        min = "08:00"
-                        max = "20:00"
                         value ={this.state.newReqTime}
                         onChange={this.onReschedInputChange}
-                    />
+                        onClick={this.onReschedInputChange}
+                    >  
+                        <option value="" disabled selected>Select time:</option>
+                        <option value="08:00">8:00am</option>
+                        <option value="08:30">8:30am</option>
+                        <option value="09:00">9:00am</option>
+                        <option value="09:30">9:30am</option>
+                        <option value="10:00">10:00am</option>
+                        <option value="10:30">10:30am</option>
+                        <option value="11:00">11:00am</option>
+                        <option value="11:30">11:30am</option>
+                        <option value="12:00">12:00pm</option>
+                        <option value="12:30">12:30pm</option>
+                        <option value="13:00">1:00pm</option>
+                        <option value="13:30">1:30pm</option>
+                        <option value="14:00">2:00pm</option>
+                        <option value="14:30">2:30pm</option>
+                        <option value="15:00">3:00pm</option>
+                        <option value="15:30">3:30pm</option>
+                        <option value="16:00">4:00pm</option>
+                        <option value="16:30">4:30pm</option>
+                        <option value="17:00">5:00pm</option>
+                        <option value="17:30">5:30pm</option>
+                        <option value="18:00">6:00pm</option>
+                        <option value="18:30">6:30pm</option>
+                        <option value="19:00">7:00pm</option>
+                        <option value="19:30">7:30pm</option>
+                        <option value="20:00">8:00pm</option>
+                        <option value="20:30">8:30pm</option>
+                        <option value="21:00">9:00pm</option>
+                    </select>
                 </div>
                 <div className="mt3 mb0 tc">
                     <label className="db fw6 f6 tc" htmlFor="service">Preferred Barber</label>
